@@ -1,4 +1,4 @@
-import Button from "components/atomics/Button";
+import Button from "../../atomics/Button";
 import React from "react";
 import * as S from "./styles";
 
@@ -7,25 +7,19 @@ export type Props = {
   title?: string;
   buttonText: string;
   onClickButton: () => void;
-  softDisabled?: boolean;
 };
 function CardCenterImageButton({
   image,
   title,
   buttonText,
   onClickButton,
-  softDisabled,
 }: Props): JSX.Element {
   return (
     <S.Container>
-      <S.Image src={image} alt="image" />
+      <S.CardImage source={{ uri: image }} />
       <S.ContainerText>
-        <S.Text>{title}</S.Text>
-        <Button
-          onClick={onClickButton}
-          text={buttonText}
-          softDisabled={softDisabled}
-        />
+        <S.Title>{title}</S.Title>
+        <Button onPress={onClickButton} text={buttonText} />
       </S.ContainerText>
     </S.Container>
   );

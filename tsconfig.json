@@ -5,9 +5,19 @@
     "allowJs": true,
     "sourceMap": true,
     "baseUrl": "src",
-    "sourceRoot": "/"
+    "sourceRoot": "/",
+    "target": "es2015",
+    "jsx": "react",
+    "noEmit": true,
+    "moduleResolution": "node",
+    "paths": {
+      "src/*": ["./*"],
+    }
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+    "node_modules",
   ]
 }
