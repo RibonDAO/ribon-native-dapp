@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { Inter_900Black } from "@expo-google-fonts/inter";
 
 export const Container = styled.TouchableOpacity`
   background-color: ${({ theme }) => theme.colors.ribonBlue};
@@ -11,4 +12,5 @@ export const Container = styled.TouchableOpacity`
 
 export const Text = styled.Text`
   color: ${({ theme }) => theme.colors.ribonWhite};
+  font-family: ${Inter_900Black};
 `;
