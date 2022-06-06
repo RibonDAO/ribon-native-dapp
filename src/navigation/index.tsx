@@ -34,10 +34,7 @@ export default function Navigation({
   colorScheme: ColorSchemeName;
 }) {
   return (
-    <NavigationContainer
-      linking={LinkingConfiguration}
-      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-    >
+    <NavigationContainer linking={LinkingConfiguration} theme={DefaultTheme}>
       <RootNavigator />
     </NavigationContainer>
   );
@@ -120,7 +117,7 @@ function BottomTabNavigator() {
         name="CausesPage"
         component={CausesPage}
         options={{
-          title: "Causes",
+          title: "Ronaldo",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
