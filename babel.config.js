@@ -17,7 +17,6 @@ module.exports = function (api) {
             screens: './src/screens',
             services: './src/services',
             styles: './src/styles',
-            testUtils: './src/testUtils',
             types: './src/types',
             contexts: './src/state/contexts',
           },

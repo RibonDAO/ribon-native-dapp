@@ -4,7 +4,7 @@ import CardCenterImageButton from "components/moleculars/CardCenterImageButton";
 import * as S from "./styles";
 
 export default function CausesPage() {
-  const { nonProfits, isLoading } = useNonProfits();
+  const { nonProfits } = useNonProfits();
 
   return (
     <S.Container>
