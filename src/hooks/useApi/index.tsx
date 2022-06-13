@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { useQuery, UseQueryOptions } from "react-query";
-import { logError } from "../../services/crashReport";
+import { logError } from "services/crashReport";
 
 interface Props {
   key: string;

@@ -1,6 +1,6 @@
 import React from "react";
-import useNonProfits from "../../hooks/apiHooks/useNonProfits";
-import CardCenterImageButton from "../../components/moleculars/CardCenterImageButton";
+import useNonProfits from "hooks/apiHooks/useNonProfits";
+import CardCenterImageButton from "components/moleculars/CardCenterImageButton";
 import * as S from "./styles";
 
 export default function CausesPage() {

@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import NonProfit from "types/entities/NonProfit";
-import { apiGet } from "..";
+import { apiGet } from "services/api";
 
 const nonProfitsApi = {
   getNonProfits: (): Promise<AxiosResponse<NonProfit[]>> =>

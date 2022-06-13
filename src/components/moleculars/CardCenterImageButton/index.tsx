@@ -1,4 +1,4 @@
-import Button from "../../atomics/Button";
+import Button from "components/atomics/Button";
 import React from "react";
 import * as S from "./styles";
 
