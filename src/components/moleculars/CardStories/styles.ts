@@ -16,21 +16,26 @@ export const Container = styled.View`
   `}
 `;
 
-export const CausesCardContainer = styled.View`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const CardImage = styled(Image)`
+  ${() => css`
+    width: 100%;
+    height: 194px;
+    border-radius: 16px;
+  `}
 `;
 
-export const CausesContainer = styled.View`
-  width: 100%;
-  margin-top: 20px;
-  column-gap: 8px;
-  row-gap: 8px;
+export const ContainerText = styled(View)`
+  ${() => css`
+    padding: 8px 12px 12px 12px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  `}
 `;
 
-export const Title = styled.Text`
+export const Title = styled(Text)`
   ${({ theme }) => css`
     color: ${theme.colors.ribonBlack};
     font-weight: 400;
