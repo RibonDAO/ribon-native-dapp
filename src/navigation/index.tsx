@@ -55,7 +55,7 @@ function RootNavigator() {
         options={{ headerShown: false }}
       />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="ModalDonation" component={ModalScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -78,11 +78,13 @@ function BottomTabNavigator() {
       }}
     >
       <BottomTab.Screen
-        name="TabOne"
+        name="causes"
         component={TabOneScreen}
         options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
-          title: "Tab One",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "Causas",
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="heart-o" color={color} />
+          ),
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate("Modal")}

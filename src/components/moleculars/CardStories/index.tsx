@@ -1,7 +1,6 @@
 import React from "react";
 import * as S from "./styles";
 import UserStory from "types/entities/UserStory";
-import { Text, View } from "components/Themed";
 import InstaStory from "react-native-insta-story";
 import snakeCaseKeys from "snakecase-keys";
 import Footer from "components/moleculars/CardStories/Footer";
@@ -17,6 +16,7 @@ function CardStories({ userStories }: Props): JSX.Element {
     });
   }
 
+  console.log(data());
   return (
     <S.Container>
       <InstaStory
@@ -24,9 +24,6 @@ function CardStories({ userStories }: Props): JSX.Element {
         duration={55}
         onStart={(item: any) => console.log(item)}
         onClose={(item: any) => console.log("close: ", item)}
-        customSwipeUpComponent={
-          <Footer ngoLogo={""} ngoName="ngo" causeText="cause text" />
-        }
       />
     </S.Container>
   );

@@ -6,7 +6,6 @@ export const Container = styled.View`
     display: flex;
     background-color: ${theme.colors.ribonWhite};
     flex-direction: column;
-    align-items: center;
     padding: 4px;
     border: 1px solid ${theme.colors.ribonWhite};
     box-sizing: border-box;
