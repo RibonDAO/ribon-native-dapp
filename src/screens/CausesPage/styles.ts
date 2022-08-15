@@ -1,17 +1,13 @@
 import styled, { css } from "styled-components/native";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   ${({ theme }) => css`
-    display: flex;
     background-color: ${theme.colors.ribonWhite};
-    flex-direction: column;
-    align-items: center;
     padding: 4px;
     border: 1px solid ${theme.colors.ribonWhite};
     box-sizing: border-box;
     border-radius: 16px;
-    width: 100%;
     height: 100%;
   `}
 `;

@@ -11,7 +11,6 @@ export default function TabOneScreen({
   const { nonProfits, isLoading } = useNonProfits();
 
   const stories = useCallback(() => {
-    console.log("havanna", nonProfits);
     if (!nonProfits) return [];
 
     return nonProfits.map((nonProfit) => ({

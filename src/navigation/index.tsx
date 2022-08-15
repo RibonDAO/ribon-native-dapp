@@ -78,6 +78,14 @@ function BottomTabNavigator() {
       }}
     >
       <BottomTab.Screen
+        name="CausesPage"
+        component={CausesPage}
+        options={{
+          title: "Causes",
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
         name="causes"
         component={TabOneScreen}
         options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
@@ -107,14 +115,6 @@ function BottomTabNavigator() {
         component={TabTwoScreen}
         options={{
           title: "Tab Two",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="CausesPage"
-        component={CausesPage}
-        options={{
-          title: "Ronaldo",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
