@@ -12,19 +12,9 @@ export const Container = styled.ScrollView`
   `}
 `;
 
-export const CausesCardContainer = styled.View`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+export const CausesCardContainer = styled.View``;
 
-export const CausesContainer = styled.View`
-  width: 100%;
-  margin-top: 20px;
-  column-gap: 8px;
-  row-gap: 8px;
-`;
+export const CausesContainer = styled.View``;
 
 export const Title = styled.Text`
   ${({ theme }) => css`

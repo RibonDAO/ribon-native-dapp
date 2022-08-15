@@ -82,7 +82,9 @@ function BottomTabNavigator() {
         component={CausesPage}
         options={{
           title: "Causes",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="heart-o" color={color} />
+          ),
         }}
       />
       <BottomTab.Screen
