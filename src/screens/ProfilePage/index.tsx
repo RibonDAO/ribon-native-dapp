@@ -1,34 +1,49 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 import { useCurrentUser } from "../../contexts/currentUserContext";
+import useImpact from "hooks/apiHooks/useImpact";
+import CardTopImage from "components/moleculars/CardTopImage";
 
 export default function ProfilePage() {
   const { currentUser } = useCurrentUser();
+  const { userImpact } = useImpact();
 
   useEffect(() => {
-    console.log(currentUser);
-  }, [currentUser]);
+    console.log(currentUser, userImpact);
+  }, [currentUser, userImpact]);
 
   return (
     <View style={styles.container}>
+      <View style={styles.separator} />
       <Text style={styles.title}>{currentUser?.email}</Text>
       <View style={styles.separator} />
+      {userImpact && (
+        <FlatList
+          data={userImpact}
+          keyExtractor={(item) => item.nonProfit.id.toString()}
+          renderItem={({ item }) => (
+            <CardTopImage
+              imageUrl={item.nonProfit.logo}
+              text={`You donated ${item.impact} ${item.nonProfit.impactDescription}`}
+            />
+          )}
+          numColumns={2}
+          columnWrapperStyle={{ justifyContent: "space-around" }}
+        />
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  container: { padding: 5 },
   title: {
     fontSize: 20,
     fontWeight: "bold",
+    textAlign: "center",
   },
   separator: {
-    marginVertical: 30,
+    marginVertical: 20,
     height: 1,
     width: "80%",
   },
