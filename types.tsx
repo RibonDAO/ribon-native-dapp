@@ -9,6 +9,7 @@ import {
   NavigatorScreenParams,
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import NonProfit from "src/types/entities/NonProfit";
 
 declare global {
   namespace ReactNavigation {
@@ -18,8 +19,12 @@ declare global {
 
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
-  Modal: undefined;
+  Modal: ModalParamList;
   NotFound: undefined;
+};
+
+export type ModalParamList = {
+  nonProfit: NonProfit;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
