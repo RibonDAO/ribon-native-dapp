@@ -20,7 +20,7 @@ function CardStories({ userStories }: Props): JSX.Element {
     <S.Container>
       <InstaStory
         data={data()}
-        duration={55}
+        duration={8}
         onStart={(item: any) => console.log(item)}
         onClose={(item: any) => console.log("close: ", item)}
       />

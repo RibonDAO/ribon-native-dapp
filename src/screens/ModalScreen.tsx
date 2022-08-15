@@ -1,18 +1,30 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { Button, Platform, StyleSheet, TextInput } from "react-native";
-import { Text, View } from "../components/Themed";
+import {
+  Button,
+  Platform,
+  StyleSheet,
+  TextInput,
+  Text,
+  View,
+} from "react-native";
 import { RootStackScreenProps } from "../../types";
 import useDonations from "../hooks/apiHooks/useDonations";
 import { RIBON_INTEGRATION_ID } from "../constants/Application";
+import { useCurrentUser } from "../contexts/currentUserContext";
+import useUsers from "../hooks/apiHooks/useUsers";
 
 export default function ModalScreen({ route }: RootStackScreenProps<"Modal">) {
   const { nonProfit } = route.params;
-  const [email, setEmail] = useState("");
+  const { findOrCreateUser } = useUsers();
+  const { setCurrentUser, currentUser } = useCurrentUser();
+  const [email, setEmail] = useState(currentUser?.email);
   const { donate } = useDonations();
 
   async function handleDonateButtonPress() {
     try {
+      const user = await findOrCreateUser(email);
+      setCurrentUser(user);
       await donate(RIBON_INTEGRATION_ID, nonProfit.id, email);
       setEmail("");
     } catch (error) {
@@ -24,11 +36,7 @@ export default function ModalScreen({ route }: RootStackScreenProps<"Modal">) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Coloque seu email para doar</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
+      <View style={styles.separator} />
       <TextInput
         style={styles.input}
         onChangeText={setEmail}

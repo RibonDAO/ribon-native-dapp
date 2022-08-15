@@ -12,6 +12,7 @@ import GivingsPage from "../screens/GivingsPage";
 import ProfilePage from "../screens/ProfilePage";
 import { RootStackParamList, RootTabParamList } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
+import CurrentUserProvider from "../contexts/currentUserContext";
 
 export default function Navigation({
   colorScheme,
@@ -20,7 +21,9 @@ export default function Navigation({
 }) {
   return (
     <NavigationContainer linking={LinkingConfiguration} theme={DefaultTheme}>
-      <RootNavigator />
+      <CurrentUserProvider>
+        <RootNavigator />
+      </CurrentUserProvider>
     </NavigationContainer>
   );
 }
@@ -80,7 +83,7 @@ function BottomTabNavigator() {
         options={{
           title: "Profile",
           tabBarIcon: ({ color }: any) => (
-            <TabBarIcon name="code" color={color} />
+            <TabBarIcon name="user-o" color={color} />
           ),
         }}
       />
