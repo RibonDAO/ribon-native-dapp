@@ -21,7 +21,7 @@ export default function CausesPage({ navigation }: RootTabScreenProps<any>) {
           storyImage: nonProfit.backgroundImage,
           swipeText: `Swipe to donate to ${nonProfit.name}`,
           onPress: () => {
-            navigation.navigate("ModalDonation", { nonProfit });
+            navigation.navigate("Modal", { nonProfit });
           },
         },
       ],
@@ -41,7 +41,7 @@ export default function CausesPage({ navigation }: RootTabScreenProps<any>) {
               title={`${nonProfit.impactByTicket} ${nonProfit.impactDescription}`}
               buttonText="Doar"
               onClickButton={() => {
-                navigation.navigate("ModalDonation", { nonProfit });
+                navigation.navigate("Modal", { nonProfit });
               }}
             />
           </S.CausesCardContainer>
