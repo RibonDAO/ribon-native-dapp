@@ -1,24 +1,22 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import {
-  Button,
-  Platform,
-  StyleSheet,
-  TextInput,
-  Text,
-  View,
-} from "react-native";
+import { Platform, StyleSheet, TextInput, Text, View } from "react-native";
 import { RootStackScreenProps } from "../../types";
 import useDonations from "../hooks/apiHooks/useDonations";
 import { RIBON_INTEGRATION_ID } from "../constants/Application";
 import { useCurrentUser } from "../contexts/currentUserContext";
 import useUsers from "../hooks/apiHooks/useUsers";
+import Button from "components/atomics/Button";
+import { showToast } from "../lib/Toast";
 
-export default function ModalScreen({ route }: RootStackScreenProps<"Modal">) {
+export default function ModalScreen({
+  route,
+  navigation,
+}: RootStackScreenProps<"Modal">) {
   const { nonProfit } = route.params;
   const { findOrCreateUser } = useUsers();
   const { setCurrentUser, currentUser } = useCurrentUser();
-  const [email, setEmail] = useState(currentUser?.email);
+  const [email, setEmail] = useState(currentUser?.email || "");
   const { donate } = useDonations();
 
   async function handleDonateButtonPress() {
@@ -27,7 +25,9 @@ export default function ModalScreen({ route }: RootStackScreenProps<"Modal">) {
       setCurrentUser(user);
       await donate(RIBON_INTEGRATION_ID, nonProfit.id, email);
       setEmail("");
+      navigation.pop();
     } catch (error) {
+      showToast(error.response.data.formatted_message);
       console.log(error);
       console.log(error.response);
     }
@@ -46,7 +46,7 @@ export default function ModalScreen({ route }: RootStackScreenProps<"Modal">) {
       />
       <Text>Doar para {nonProfit.name}</Text>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
-      <Button title="doar" onPress={handleDonateButtonPress} />
+      <Button text="donate" onPress={handleDonateButtonPress} />
       <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
     </View>
   );

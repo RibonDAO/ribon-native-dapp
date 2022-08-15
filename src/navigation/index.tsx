@@ -13,6 +13,7 @@ import ProfilePage from "../screens/ProfilePage";
 import { RootStackParamList, RootTabParamList } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import CurrentUserProvider from "../contexts/currentUserContext";
+import { RootSiblingParent } from "react-native-root-siblings";
 
 export default function Navigation({
   colorScheme,
@@ -22,7 +23,9 @@ export default function Navigation({
   return (
     <NavigationContainer linking={LinkingConfiguration} theme={DefaultTheme}>
       <CurrentUserProvider>
-        <RootNavigator />
+        <RootSiblingParent>
+          <RootNavigator />
+        </RootSiblingParent>
       </CurrentUserProvider>
     </NavigationContainer>
   );
