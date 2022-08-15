@@ -39,7 +39,7 @@ export default function CausesPage({ navigation }: RootTabScreenProps<any>) {
             <CardCenterImageButton
               image={nonProfit.mainImage}
               title={`${nonProfit.impactByTicket} ${nonProfit.impactDescription}`}
-              buttonText="Doar"
+              buttonText="Donate"
               onClickButton={() => {
                 navigation.navigate("Modal", { nonProfit });
               }}

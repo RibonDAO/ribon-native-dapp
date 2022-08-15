@@ -12,7 +12,11 @@ export const Container = styled.ScrollView`
   `}
 `;
 
-export const CausesCardContainer = styled.View``;
+export const CausesCardContainer = styled.View`
+  ${({ theme }) => css`
+    height: 300px;
+  `}
+`;
 
 export const CausesContainer = styled.View``;
 
