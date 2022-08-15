@@ -16,7 +16,6 @@ function CardStories({ userStories }: Props): JSX.Element {
     });
   }
 
-  console.log(data());
   return (
     <S.Container>
       <InstaStory

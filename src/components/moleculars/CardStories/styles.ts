@@ -11,7 +11,6 @@ export const Container = styled.View`
     box-sizing: border-box;
     border-radius: 16px;
     width: 100%;
-    height: 100%;
   `}
 `;
 
