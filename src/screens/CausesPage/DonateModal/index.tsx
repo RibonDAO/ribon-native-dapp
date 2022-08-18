@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
-import { Platform, StyleSheet, TextInput, Text, View } from "react-native";
-import { RootStackScreenProps } from "../../types";
-import useDonations from "../hooks/apiHooks/useDonations";
-import { RIBON_INTEGRATION_ID } from "../constants/Application";
-import { useCurrentUser } from "../contexts/currentUserContext";
-import useUsers from "../hooks/apiHooks/useUsers";
+import { StyleSheet, TextInput, Text, View, Image } from "react-native";
+import { RootStackScreenProps } from "../../../../types";
+import useDonations from "../../../hooks/apiHooks/useDonations";
+import { RIBON_INTEGRATION_ID } from "../../../constants/Application";
+import { useCurrentUser } from "../../../contexts/currentUserContext";
+import useUsers from "../../../hooks/apiHooks/useUsers";
 import Button from "components/atomics/Button";
-import { showToast } from "../lib/Toast";
+import { showToast } from "../../../lib/Toast";
 
-export default function ModalScreen({
+export default function DonateModal({
   route,
   navigation,
-}: RootStackScreenProps<"Modal">) {
+}: RootStackScreenProps<"DonateModal">) {
+  const [isDonating, setIsDonating] = useState(false);
   const { nonProfit } = route.params;
   const { findOrCreateUser } = useUsers();
   const { setCurrentUser, currentUser } = useCurrentUser();
@@ -20,34 +20,41 @@ export default function ModalScreen({
   const { donate } = useDonations();
 
   async function handleDonateButtonPress() {
+    setIsDonating(true);
     try {
       const user = await findOrCreateUser(email);
       setCurrentUser(user);
       await donate(RIBON_INTEGRATION_ID, nonProfit.id, email);
       setEmail("");
+      showToast("Thanks for your donation!");
       navigation.pop();
     } catch (error) {
       showToast(error.response.data.formatted_message);
       console.log(error);
       console.log(error.response);
+    } finally {
+      setIsDonating(false);
     }
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Coloque seu email para doar</Text>
-      <View style={styles.separator} />
+      <Text>You are donating to {nonProfit.name}</Text>
+      <Image source={{ uri: nonProfit.mainImage }} style={styles.image} />
+      <Text style={styles.title}>Place your email to donate</Text>
       <TextInput
         style={styles.input}
         onChangeText={setEmail}
         value={email}
         autoCapitalize="none"
         textContentType="emailAddress"
+        autoFocus
       />
-      <Text>Doar para {nonProfit.name}</Text>
-      {/* Use a light status bar on iOS to account for the black space above the modal */}
-      <Button text="donate" onPress={handleDonateButtonPress} />
-      <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
+      <Button
+        text="DONATE"
+        onPress={handleDonateButtonPress}
+        disabled={isDonating}
+      />
     </View>
   );
 }
@@ -56,12 +63,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    paddingTop: 20,
     paddingHorizontal: 10,
   },
   title: {
     fontSize: 20,
     fontWeight: "bold",
+    marginTop: 15,
   },
   separator: {
     marginVertical: 30,
@@ -74,5 +82,13 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    borderRadius: 8,
+  },
+  image: {
+    borderRadius: 250,
+    width: 200,
+    height: 200,
+    resizeMode: "cover",
+    marginVertical: 15,
   },
 });

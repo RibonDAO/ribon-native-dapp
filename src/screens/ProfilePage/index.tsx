@@ -22,13 +22,15 @@ export default function ProfilePage() {
           data={userImpact}
           keyExtractor={(item) => item.nonProfit.id.toString()}
           renderItem={({ item }) => (
-            <CardTopImage
-              imageUrl={item.nonProfit.logo}
-              text={`You donated ${item.impact} ${item.nonProfit.impactDescription}`}
-            />
+            <View style={{ marginHorizontal: 8 }}>
+              <CardTopImage
+                imageUrl={item.nonProfit.logo}
+                text={`You donated ${item.impact} ${item.nonProfit.impactDescription}`}
+              />
+            </View>
           )}
           numColumns={2}
-          columnWrapperStyle={{ justifyContent: "space-around" }}
+          columnWrapperStyle={{ justifyContent: "center" }}
         />
       )}
     </View>
