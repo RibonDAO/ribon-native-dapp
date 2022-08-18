@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components/native";
-import { View, Text, Image, ScrollView } from "react-native";
 
 export const Container = styled.ScrollView`
   ${({ theme }) => css`

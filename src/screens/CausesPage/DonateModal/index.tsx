@@ -7,6 +7,7 @@ import { useCurrentUser } from "../../../contexts/currentUserContext";
 import useUsers from "../../../hooks/apiHooks/useUsers";
 import Button from "components/atomics/Button";
 import { showToast } from "../../../lib/Toast";
+import * as S from "./styles";
 
 export default function DonateModal({
   route,
@@ -30,20 +31,17 @@ export default function DonateModal({
       navigation.pop();
     } catch (error) {
       showToast(error.response.data.formatted_message);
-      console.log(error);
-      console.log(error.response);
     } finally {
       setIsDonating(false);
     }
   }
 
   return (
-    <View style={styles.container}>
-      <Text>You are donating to {nonProfit.name}</Text>
-      <Image source={{ uri: nonProfit.mainImage }} style={styles.image} />
-      <Text style={styles.title}>Place your email to donate</Text>
-      <TextInput
-        style={styles.input}
+    <S.Container>
+      <S.DonatingText>You are donating to {nonProfit.name}</S.DonatingText>
+      <S.DonatingImage source={{ uri: nonProfit.mainImage }} />
+      <S.PlaceEmailText>Place your email to donate</S.PlaceEmailText>
+      <S.Input
         onChangeText={setEmail}
         value={email}
         autoCapitalize="none"
@@ -55,40 +53,6 @@ export default function DonateModal({
         onPress={handleDonateButtonPress}
         disabled={isDonating}
       />
-    </View>
+    </S.Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    paddingTop: 20,
-    paddingHorizontal: 10,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginTop: 15,
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-  input: {
-    height: 40,
-    width: "100%",
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    borderRadius: 8,
-  },
-  image: {
-    borderRadius: 250,
-    width: 200,
-    height: 200,
-    resizeMode: "cover",
-    marginVertical: 15,
-  },
-});

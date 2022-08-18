@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { useCurrentUser } from "../../contexts/currentUserContext";
 import useImpact from "hooks/apiHooks/useImpact";
@@ -7,10 +7,6 @@ import CardTopImage from "components/moleculars/CardTopImage";
 export default function ProfilePage() {
   const { currentUser } = useCurrentUser();
   const { userImpact } = useImpact();
-
-  useEffect(() => {
-    console.log(currentUser, userImpact);
-  }, [currentUser, userImpact]);
 
   return (
     <View style={styles.container}>
