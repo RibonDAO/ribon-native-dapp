@@ -6,7 +6,6 @@ function useDonations() {
     nonProfitId: number,
     email: string,
   ) {
-    // console.log(integrationId, nonProfitId, email, donationsApi.postDonation);
     await donationsApi.postDonation(integrationId, nonProfitId, email);
   }
 

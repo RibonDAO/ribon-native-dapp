@@ -6,12 +6,14 @@ import * as React from "react";
 import { ColorSchemeName } from "react-native";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
-import ModalScreen from "../screens/ModalScreen";
+import DonateModal from "../screens/CausesPage/DonateModal";
 import CausesPage from "../screens/CausesPage";
 import GivingsPage from "../screens/GivingsPage";
 import ProfilePage from "../screens/ProfilePage";
 import { RootStackParamList, RootTabParamList } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
+import CurrentUserProvider from "../contexts/currentUserContext";
+import { RootSiblingParent } from "react-native-root-siblings";
 
 export default function Navigation({
   colorScheme,
@@ -20,7 +22,11 @@ export default function Navigation({
 }) {
   return (
     <NavigationContainer linking={LinkingConfiguration} theme={DefaultTheme}>
-      <RootNavigator />
+      <CurrentUserProvider>
+        <RootSiblingParent>
+          <RootNavigator />
+        </RootSiblingParent>
+      </CurrentUserProvider>
     </NavigationContainer>
   );
 }
@@ -35,8 +41,8 @@ function RootNavigator() {
         component={BottomTabNavigator}
         options={{ headerShown: false }}
       />
-      <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+      <Stack.Group screenOptions={{ presentation: "modal", title: "Donate" }}>
+        <Stack.Screen name="DonateModal" component={DonateModal} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -80,7 +86,7 @@ function BottomTabNavigator() {
         options={{
           title: "Profile",
           tabBarIcon: ({ color }: any) => (
-            <TabBarIcon name="code" color={color} />
+            <TabBarIcon name="user-o" color={color} />
           ),
         }}
       />
@@ -88,9 +94,6 @@ function BottomTabNavigator() {
   );
 }
 
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
   color: string;
