@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { Text, View, FlatList } from "react-native";
 import { useCurrentUser } from "../../contexts/currentUserContext";
 import useImpact from "hooks/apiHooks/useImpact";
 import CardTopImage from "components/moleculars/CardTopImage";
+import * as S from "./styles";
 
 export default function ProfilePage() {
   const { currentUser } = useCurrentUser();
@@ -13,10 +14,14 @@ export default function ProfilePage() {
   }, [currentUser, userImpact]);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.separator} />
-      <Text style={styles.title}>{currentUser?.email}</Text>
-      <View style={styles.separator} />
+    <S.Container>
+      <S.Separator />
+      <CardTopImage
+        imageUrl="https://dummyimage.com/100x100/000/fff"
+        text="Days donating: 200"
+      />
+      <S.Title>{currentUser?.email}</S.Title>
+      <S.Separator />
       {userImpact && (
         <FlatList
           data={userImpact}
@@ -33,20 +38,6 @@ export default function ProfilePage() {
           columnWrapperStyle={{ justifyContent: "center" }}
         />
       )}
-    </View>
+    </S.Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { padding: 5 },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  separator: {
-    marginVertical: 20,
-    height: 1,
-    width: "80%",
-  },
-});
