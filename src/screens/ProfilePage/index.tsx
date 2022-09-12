@@ -4,6 +4,7 @@ import { useCurrentUser } from "../../contexts/currentUserContext";
 import useImpact from "hooks/apiHooks/useImpact";
 import CardTopImage from "components/moleculars/CardTopImage";
 import * as S from "./styles";
+import FriendCard from "./FriendCard";
 
 export default function ProfilePage() {
   const { currentUser } = useCurrentUser();
@@ -16,12 +17,24 @@ export default function ProfilePage() {
   return (
     <S.Container>
       <S.Separator />
-      <CardTopImage
-        imageUrl="https://dummyimage.com/100x100/000/fff"
-        text="Days donating: 200"
-      />
-      <S.Title>{currentUser?.email}</S.Title>
+      <S.UserDataSection>
+        <S.UserProfileImage
+          source={{ uri: "https://dummyimage.com/100x100/000/fff" }}
+        />
+        <S.Email>Yan Galli</S.Email>
+        <S.UserLevel>Doador ouro</S.UserLevel>
+        <S.UserDonations>Dias doados: 326</S.UserDonations>
+      </S.UserDataSection>
+
       <S.Separator />
+
+      <S.FriendsSection>
+        <S.Title>Seus amigos doadores:</S.Title>
+        <S.FriendCards>
+          <FriendCard />
+        </S.FriendCards>
+      </S.FriendsSection>
+
       {userImpact && (
         <FlatList
           data={userImpact}
