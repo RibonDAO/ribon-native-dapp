@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, View, Text, PanResponder, Animated } from "react-native";
 import DragItem from "components/moleculars/Draggable";
 import { showToast } from "../../lib/Toast";
+import theme from "styles/theme";
 
 export default class GivingsPage extends Component {
   render() {
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
   },
   dropZone: {
     height: 200,
-    backgroundColor: "#00334d",
+    backgroundColor: theme.colors.ribonBlue,
   },
   text: {
     marginTop: 25,
