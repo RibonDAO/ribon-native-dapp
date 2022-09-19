@@ -21,7 +21,6 @@ export const CardImage = styled.Image`
   height: 52px;
   width: 52px;
   border-radius: 50px;
-  border: 3px solid blue;
   box-shadow: 0 0 10px #9ecaed;
 `;
 
@@ -31,12 +30,10 @@ export const DescriptionContainer = styled.View`
 
 export const FriendName = styled.Text`
   font-size: 16px;
-  text-align: start;
 `;
 
 export const FriendLevel = styled.Text`
   font-size: 16px;
-  text-align: start;
 `;
 
 export const DonationContainer = styled.View`
@@ -46,5 +43,4 @@ export const DonationContainer = styled.View`
 export const FriendDonations = styled.Text`
   font-size: 16px;
   font-weight: bold;
-  text-align: end;
 `;

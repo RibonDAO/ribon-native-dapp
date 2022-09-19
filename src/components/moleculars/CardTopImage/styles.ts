@@ -24,6 +24,5 @@ export const Text = styled.Text`
     margin-top: 16px;
     font-size: 14px;
     color: ${theme.colors.ribonBlack};
-    text-align: center;
   `}
 `;
