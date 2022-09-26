@@ -37,7 +37,6 @@ export const Title = styled(Text)`
   ${({ theme }) => css`
     color: ${theme.colors.ribonBlack};
     font-weight: 400;
-    text-align: center;
     margin-bottom: 8px;
   `}
 `;

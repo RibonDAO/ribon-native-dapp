@@ -1,16 +1,7 @@
 import styled, { css } from "styled-components/native";
 
 export const Container = styled.View`
-  ${({ theme }) => css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 160px;
-    padding: 16px;
-    background-color: ${theme.colors.ribonWhite};
-    border-radius: 16px;
-    margin-bottom: 16px;
-  `}
+  flex: 1;
 `;
 
 export const Image = styled.Image`
