@@ -22,12 +22,29 @@ export default function ProfilePage() {
           <S.UserProfileImage
             source={{ uri: "https://dummyimage.com/100x100/000/fff" }}
           />
-          <S.Email>Yan Galli</S.Email>
+          <S.Email>{currentUser?.email}</S.Email>
           <S.UserLevel>Doador ouro</S.UserLevel>
           <S.UserDonations>Dias doados: 326</S.UserDonations>
         </S.UserDataSection>
 
         <S.Separator />
+
+        <S.BadgesSection>
+          <S.Title>Suas badges:</S.Title>
+          <S.BadgeContainer>
+            <S.BadgeImage
+              source={{ uri: "https://dummyimage.com/100x100/000/fff" }}
+            />
+            <S.BadgeImage
+              source={{ uri: "https://dummyimage.com/100x100/000/fff" }}
+              style={{ opacity: 0.5 }}
+            />
+            <S.BadgeImage
+              source={{ uri: "https://dummyimage.com/100x100/000/fff" }}
+              style={{ opacity: 0.5 }}
+            />
+          </S.BadgeContainer>
+        </S.BadgesSection>
 
         <S.FriendsSection>
           <S.Title>Seus amigos doadores:</S.Title>

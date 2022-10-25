@@ -14,6 +14,7 @@ import { RootStackParamList, RootTabParamList } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import CurrentUserProvider from "../contexts/currentUserContext";
 import { RootSiblingParent } from "react-native-root-siblings";
+import ImpactPage from "../screens/ImpactPage";
 
 export default function Navigation({
   colorScheme,
@@ -75,6 +76,16 @@ function BottomTabNavigator() {
         component={GivingsPage}
         options={{
           title: "Givings",
+          tabBarIcon: ({ color }: any) => (
+            <TabBarIcon name="gift" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="ImpactPage"
+        component={ImpactPage}
+        options={{
+          title: "Impacts",
           tabBarIcon: ({ color }: any) => (
             <TabBarIcon name="gift" color={color} />
           ),
