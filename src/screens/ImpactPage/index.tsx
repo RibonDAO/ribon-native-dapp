@@ -1,5 +1,5 @@
 import React, { Component, useEffect } from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, FlatList } from "react-native";
 import { useCurrentUser } from "../../contexts/currentUserContext";
 import theme from "styles/theme";
 import useBadges from "hooks/apiHooks/useBadges";
@@ -19,16 +19,19 @@ function ImpactPage() {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.dropZone}>
-        <Text style={styles.text}>Impact Page!</Text>
+        <Text style={styles.text}>Your Badges</Text>
       </View>
       <View>
-        {userBadges?.map((badge) => (
-          <View>
-            <Text>{badge.description}</Text>
-            <Text>{badge.category}</Text>
-            <Image source={{ uri: badge.image }} style={styles.image} />
-          </View>
-        ))}
+        <FlatList
+          data={userBadges}
+          renderItem={({ item }) => (
+            <View style={styles.badgeCard}>
+              <Image source={{ uri: item.image }} style={styles.image} />
+              <Text style={styles.badgeText}>{item.name}</Text>
+            </View>
+          )}
+          numColumns={3}
+        />
       </View>
     </View>
   );
@@ -54,11 +57,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   dropZone: {
-    height: 200,
+    padding: 15,
+    marginBottom: 15,
     backgroundColor: theme.colors.ribonBlue,
   },
   text: {
-    marginTop: 25,
     marginLeft: 5,
     marginRight: 5,
     textAlign: "center",
@@ -70,5 +73,14 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     borderRadius: 50,
+    marginVertical: 5,
+  },
+  badgeCard: {
+    alignItems: "center",
+    display: "flex",
+    flex: 1,
+  },
+  badgeText: {
+    marginBottom: 15,
   },
 });
