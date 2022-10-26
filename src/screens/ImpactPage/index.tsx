@@ -25,9 +25,12 @@ function ImpactPage() {
         <FlatList
           data={userBadges}
           renderItem={({ item }) => (
-            <View style={styles.badgeCard}>
+            <View
+              style={[styles.badgeCard, { opacity: item.claimed ? 1.0 : 0.3 }]}
+            >
               <Image source={{ uri: item.image }} style={styles.image} />
               <Text style={styles.badgeText}>{item.name}</Text>
+              <Text style={styles.badgeCategory}>{item.category}</Text>
             </View>
           )}
           numColumns={3}
@@ -81,6 +84,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   badgeText: {
-    marginBottom: 15,
+    textAlign: "center",
+    fontSize: 16,
+  },
+  badgeCategory: {
+    fontWeight: "bold",
+    marginBottom: 35,
+    fontSize: 12,
   },
 });

@@ -4,4 +4,5 @@ export default interface Badge {
   description: string;
   image: string;
   name: string;
+  claimed: boolean;
 }
