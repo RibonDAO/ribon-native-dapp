@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName, Image } from "react-native";
+import { ColorSchemeName, Image, View } from "react-native";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import DonateModal from "../screens/CausesPage/DonateModal";
@@ -18,6 +18,7 @@ import GivingIcon from "../assets/icons/giving-icon.png";
 import CausesIcon from "../assets/icons/causes-icon.png";
 import ImpactIcon from "../assets/icons/impact-icon.png";
 import UserIcon from "../assets/icons/user-icon.png";
+import CustomHeader from "./CustomHeader";
 
 export default function Navigation({
   colorScheme,
@@ -62,7 +63,9 @@ function BottomTabNavigator() {
       initialRouteName="CausesPage"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
+        headerTitle: () => <CustomHeader />,
       }}
+      headerShown={false}
     >
       <BottomTab.Screen
         name="CausesPage"
