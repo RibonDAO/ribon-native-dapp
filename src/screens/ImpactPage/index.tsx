@@ -20,7 +20,14 @@ function ImpactPage() {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.dropZone}>
-        <Text style={styles.title}>Badges</Text>
+        <View>
+          <Text style={styles.title}>5</Text>
+          <Text style={styles.subtitle}>badges</Text>
+        </View>
+        <View>
+          <Text style={styles.title}>800</Text>
+          <Text style={styles.subtitle}>ribons</Text>
+        </View>
       </View>
       <View style={styles.badgesContainer}>
         <FlatList
@@ -105,8 +112,9 @@ const styles = StyleSheet.create({
     padding: 15,
     height: 100,
     display: "flex",
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
   },
   text: {
     marginLeft: 5,
@@ -144,7 +152,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "bold",
-    fontSize: 30,
+    fontSize: 24,
+    color: theme.colors.ribonWhite,
+    textAlign: "center",
+  },
+  subtitle: {
+    fontSize: 14,
     color: theme.colors.ribonWhite,
     textAlign: "center",
   },
