@@ -18,19 +18,27 @@ function ImpactPage() {
 
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.dropZone}>
-        <Text style={styles.text}>Your Badges</Text>
-      </View>
-      <View>
+      <View style={styles.dropZone}></View>
+      <View style={styles.badgesContainer}>
+        <Text style={styles.text}>Badges</Text>
         <FlatList
           data={userBadges}
           renderItem={({ item }) => (
-            <View
-              style={[styles.badgeCard, { opacity: item.claimed ? 1.0 : 0.3 }]}
-            >
-              <Image source={{ uri: item.image }} style={styles.image} />
-              <Text style={styles.badgeText}>{item.name}</Text>
-              <Text style={styles.badgeCategory}>{item.category}</Text>
+            <View style={styles.badgeContainer}>
+              <View
+                style={[
+                  styles.badgeCard,
+                  {
+                    opacity: item.claimed ? 1.0 : 0.4,
+                    borderColor: item.claimed
+                      ? theme.colors.ribonBlue
+                      : theme.colors.darkGray,
+                    borderStyle: item.claimed ? "solid" : "dashed",
+                  },
+                ]}
+              >
+                <Image source={{ uri: item.image }} style={styles.image} />
+              </View>
             </View>
           )}
           numColumns={3}
@@ -46,9 +54,21 @@ let CIRCLE_RADIUS = 30;
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+    backgroundColor: theme.colors.ribonBlue,
   },
-  ballContainer: {
-    height: 200,
+  badgesContainer: {
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    backgroundColor: theme.colors.ribonWhite,
+    flex: 1,
+    padding: 15,
+  },
+  badgeContainer: {
+    flex: 1,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 35,
   },
   circle: {
     backgroundColor: "skyblue",
@@ -61,27 +81,31 @@ const styles = StyleSheet.create({
   },
   dropZone: {
     padding: 15,
-    marginBottom: 15,
-    backgroundColor: theme.colors.ribonBlue,
+    height: 100,
   },
   text: {
     marginLeft: 5,
     marginRight: 5,
     textAlign: "center",
-    color: "#fff",
-    fontSize: 25,
+    color: theme.colors.ribonBlack,
+    fontSize: 20,
+    marginBottom: 15,
     fontWeight: "bold",
   },
   image: {
-    height: 50,
-    width: 50,
-    borderRadius: 50,
+    height: 70,
+    width: 70,
+    borderRadius: 70,
     marginVertical: 5,
   },
   badgeCard: {
     alignItems: "center",
     display: "flex",
-    flex: 1,
+    justifyContent: "center",
+    borderWidth: 2,
+    borderRadius: 50,
+    width: 80,
+    height: 80,
   },
   badgeText: {
     textAlign: "center",
