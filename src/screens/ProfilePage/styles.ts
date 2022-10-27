@@ -8,80 +8,60 @@ export const Container = styled.View`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: ${({ theme }) => theme.colors.ribonBlue};
 `;
 
-export const ScrollContainer = styled.ScrollView``;
-
-export const Email = styled.Text`
-  font-size: 12px;
-  font-weight: bold;
-  margin-top: 8px;
+export const ScrollContainer = styled.ScrollView`
+  background-color: ${({ theme }) => theme.colors.ribonBlue};
 `;
 
-export const UserLevel = styled.Text`
-  font-size: 14px;
-  font-weight: bold;
-  margin-top: 8px;
-`;
-
-export const UserDonations = styled.Text`
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 8px;
-`;
-
-export const Separator = styled.View`
-  margin: 10px 0px;
-  height: 1px;
-  width: 80%;
-`;
-
-export const UserDataSection = styled.View`
+export const AvatarContainer = styled.View`
+  height: 120px;
+  width: 120px;
   display: flex;
-  align-items: center;
+  position: relative;
 `;
 
-export const UserProfileImage = styled.Image`
-  height: 100px;
-  width: 100px;
+export const RankImage = styled.Image`
+  height: 120px;
+  width: 120px;
   border-radius: 50px;
-  box-shadow: 0 0 10px gold;
+  z-index: 3;
 `;
 
-export const FriendsSection = styled.View`
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
-  padding: 20px;
+export const AvatarImage = styled.Image`
+  height: 84px;
+  width: 84px;
+  position: absolute;
+  top: 16;
+  left: 16;
+`;
+
+export const ProgressBarContainer = styled.View`
   width: 100%;
+  display: flex;
 `;
 
-export const FriendCards = styled.View`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+export const ProgressBar = styled.View`
   width: 100%;
-`;
-
-export const Title = styled.Text`
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 20px;
-`;
-
-export const BadgesSection = styled.View`
-  padding: 20px;
-`;
-
-export const BadgeContainer = styled.View`
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-`;
-export const BadgeImage = styled.Image`
-  height: 70px;
-  width: 70px;
-  border-radius: 50px;
+  width: 300px;
+  height: 30px;
+  border-radius: 5px;
+  margin: 20px 10px;
+  border: 1px solid white;
+  overflow: hidden;
+  position: relative;
+
+  span {
+    height: 100%;
+    display: block;
+    width: 0;
+    color: rgb(255, 251, 251);
+    line-height: 30px;
+    position: absolute;
+    text-align: end;
+    padding-right: 5px;
+    background-color: white;
+  }
 `;
