@@ -1,33 +1,10 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, PanResponder, Animated } from "react-native";
-import DragItem from "components/moleculars/Draggable";
-import { showToast } from "../../lib/Toast";
+import { StyleSheet, View } from "react-native";
 import theme from "styles/theme";
 
 export default class GivingsPage extends Component {
   render() {
-    return (
-      <View style={styles.mainContainer}>
-        <View style={styles.dropZone}>
-          <Text style={styles.text}>Faça sua doação!</Text>
-        </View>
-        <View style={styles.ballContainer} />
-        <View style={styles.row}>
-          <DragItem
-            onDropAreaCallback={() => {
-              showToast("doou");
-            }}
-            imageUrl="https://www.pngall.com/wp-content/uploads/4/Dry-Dog-Food-PNG-Free-Download.png"
-          />
-          <DragItem
-            onDropAreaCallback={() => {
-              showToast("doou");
-            }}
-            imageUrl="https://www.pngall.com/wp-content/uploads/4/Dry-Dog-Food-PNG-Free-Download.png"
-          />
-        </View>
-      </View>
-    );
+    return <View style={styles.mainContainer}></View>;
   }
 }
 

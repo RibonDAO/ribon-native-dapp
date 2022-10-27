@@ -70,3 +70,18 @@ export const Title = styled.Text`
   font-weight: bold;
   margin-bottom: 20px;
 `;
+
+export const BadgesSection = styled.View`
+  padding: 20px;
+`;
+
+export const BadgeContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+`;
+export const BadgeImage = styled.Image`
+  height: 70px;
+  width: 70px;
+  border-radius: 50px;
+`;

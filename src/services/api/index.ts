@@ -1,6 +1,8 @@
 import Axios, { AxiosRequestConfig } from "axios";
 import camelCaseKeys from "camelcase-keys";
 import snakeCaseKeys from "snakecase-keys";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { CURRENT_USER_KEY } from "../../contexts/currentUserContext";
 
 const RIBON_API = "http://ribon-core-api-dev.us-east-1.elasticbeanstalk.com/";
 
@@ -29,9 +31,11 @@ api.interceptors.response.use(
   (error) => Promise.reject(error),
 );
 
-api.interceptors.request.use((config) => {
+api.interceptors.request.use(async (config) => {
   const lang = "en";
-  const authHeaders = { Language: lang, Email: "" };
+  const user = await AsyncStorage.getItem(CURRENT_USER_KEY);
+  const email = JSON.parse(user || "{}")?.email;
+  const authHeaders = { Language: lang, Email: email };
   // eslint-disable-next-line no-param-reassign
   config.headers = { ...authHeaders, ...config.headers };
 

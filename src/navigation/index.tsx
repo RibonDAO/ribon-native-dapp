@@ -1,9 +1,8 @@
-import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName } from "react-native";
+import { ColorSchemeName, Image } from "react-native";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import DonateModal from "../screens/CausesPage/DonateModal";
@@ -14,6 +13,12 @@ import { RootStackParamList, RootTabParamList } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import CurrentUserProvider from "../contexts/currentUserContext";
 import { RootSiblingParent } from "react-native-root-siblings";
+import ImpactPage from "../screens/ImpactPage";
+import GivingIcon from "../assets/icons/giving-icon.png";
+import CausesIcon from "../assets/icons/causes-icon.png";
+import ImpactIcon from "../assets/icons/impact-icon.png";
+import UserIcon from "../assets/icons/user-icon.png";
+import CustomHeader from "./CustomHeader";
 
 export default function Navigation({
   colorScheme,
@@ -58,7 +63,9 @@ function BottomTabNavigator() {
       initialRouteName="CausesPage"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
+        headerTitle: () => <CustomHeader />,
       }}
+      headerShown={false}
     >
       <BottomTab.Screen
         name="CausesPage"
@@ -66,7 +73,7 @@ function BottomTabNavigator() {
         options={{
           title: "Causes",
           tabBarIcon: ({ color }: any) => (
-            <TabBarIcon name="heart-o" color={color} />
+            <Image source={CausesIcon} style={{ tintColor: color }} />
           ),
         }}
       />
@@ -74,9 +81,19 @@ function BottomTabNavigator() {
         name="GivingsPage"
         component={GivingsPage}
         options={{
-          title: "Givings",
+          title: "Giving",
           tabBarIcon: ({ color }: any) => (
-            <TabBarIcon name="gift" color={color} />
+            <Image source={GivingIcon} style={{ tintColor: color }} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="ImpactPage"
+        component={ImpactPage}
+        options={{
+          title: "Impact",
+          tabBarIcon: ({ color }: any) => (
+            <Image source={ImpactIcon} style={{ tintColor: color }} />
           ),
         }}
       />
@@ -86,17 +103,10 @@ function BottomTabNavigator() {
         options={{
           title: "Profile",
           tabBarIcon: ({ color }: any) => (
-            <TabBarIcon name="user-o" color={color} />
+            <Image source={UserIcon} style={{ tintColor: color }} />
           ),
         }}
       />
     </BottomTab.Navigator>
   );
-}
-
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 }
