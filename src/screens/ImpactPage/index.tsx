@@ -39,6 +39,7 @@ function ImpactPage() {
               >
                 <Image source={{ uri: item.image }} style={styles.image} />
               </View>
+              <Text style={styles.badgeText}>{item.name}</Text>
             </View>
           )}
           numColumns={3}
@@ -93,8 +94,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   image: {
-    height: 70,
-    width: 70,
+    height: 50,
+    width: 50,
     borderRadius: 70,
     marginVertical: 5,
   },
@@ -109,7 +110,8 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     textAlign: "center",
-    fontSize: 16,
+    fontSize: 14,
+    marginTop: 4,
   },
   badgeCategory: {
     fontWeight: "bold",
