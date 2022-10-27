@@ -20,10 +20,9 @@ function ImpactPage() {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.dropZone}>
-        <Text style={styles.title}>Impact</Text>
+        <Text style={styles.title}>Badges</Text>
       </View>
       <View style={styles.badgesContainer}>
-        <Text style={styles.text}>Badges</Text>
         <FlatList
           data={userBadges}
           renderItem={({ item }) => (
@@ -83,7 +82,8 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     backgroundColor: theme.colors.ribonWhite,
     flex: 1,
-    padding: 15,
+    paddingHorizontal: 15,
+    paddingVertical: 30,
   },
   badgeContainer: {
     flex: 1,
