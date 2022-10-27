@@ -1,8 +1,9 @@
-import React, { Component, useEffect } from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View, Text, Image, FlatList } from "react-native";
 import { useCurrentUser } from "../../contexts/currentUserContext";
 import theme from "styles/theme";
 import useBadges from "hooks/apiHooks/useBadges";
+import FlipCard from "react-native-flip-card";
 
 function ImpactPage() {
   const { currentUser } = useCurrentUser();
@@ -18,29 +19,49 @@ function ImpactPage() {
 
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.dropZone}></View>
+      <View style={styles.dropZone}>
+        <Text style={styles.title}>Impact</Text>
+      </View>
       <View style={styles.badgesContainer}>
         <Text style={styles.text}>Badges</Text>
         <FlatList
           data={userBadges}
           renderItem={({ item }) => (
-            <View style={styles.badgeContainer}>
+            <FlipCard>
+              {/* Face Side */}
               <View
                 style={[
-                  styles.badgeCard,
+                  styles.badgeContainer,
+                  { opacity: item.claimed ? 1.0 : 0.4 },
+                ]}
+              >
+                <View
+                  style={[
+                    styles.badgeCard,
+                    {
+                      borderColor: item.claimed
+                        ? theme.colors.ribonBlue
+                        : theme.colors.darkGray,
+                      borderStyle: item.claimed ? "solid" : "dashed",
+                    },
+                  ]}
+                >
+                  <Image source={{ uri: item.image }} style={styles.image} />
+                </View>
+                <Text style={styles.badgeText}>{item.name}</Text>
+              </View>
+              {/* Back Side */}
+              <View
+                style={[
+                  styles.badgeContainer,
                   {
                     opacity: item.claimed ? 1.0 : 0.4,
-                    borderColor: item.claimed
-                      ? theme.colors.ribonBlue
-                      : theme.colors.darkGray,
-                    borderStyle: item.claimed ? "solid" : "dashed",
                   },
                 ]}
               >
-                <Image source={{ uri: item.image }} style={styles.image} />
+                <Text style={styles.badgeText}>{item.description}</Text>
               </View>
-              <Text style={styles.badgeText}>{item.name}</Text>
-            </View>
+            </FlipCard>
           )}
           numColumns={3}
         />
@@ -83,6 +104,9 @@ const styles = StyleSheet.create({
   dropZone: {
     padding: 15,
     height: 100,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   text: {
     marginLeft: 5,
@@ -117,5 +141,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 35,
     fontSize: 12,
+  },
+  title: {
+    fontWeight: "bold",
+    fontSize: 30,
+    color: theme.colors.ribonWhite,
+    textAlign: "center",
   },
 });
