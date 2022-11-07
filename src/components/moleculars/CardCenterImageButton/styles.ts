@@ -81,7 +81,7 @@ export const Info = styled(Text)`
   `}
 `;
 
-export const Icon = styled(Image)`
+export const Icon = styled(View)`
   ${({ theme }) => css`
     margin-top: 2px;
     margin-left: 4px;

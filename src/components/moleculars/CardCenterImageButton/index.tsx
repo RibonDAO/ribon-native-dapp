@@ -1,7 +1,7 @@
 import Button from "components/atomics/Button";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import securityIcon from "assets/icons/security-mark-icon.png";
+import VerifiedBadge from "components/vectors/VerifiedBadge";
 import * as S from "./styles";
 
 export type Props = {
@@ -38,7 +38,9 @@ function CardCenterImageButton({
             {infoTextLeft && (
               <>
                 <S.Info>{infoTextLeft}</S.Info>
-                <S.Icon source={securityIcon} />
+                <S.Icon>
+                  <VerifiedBadge />
+                </S.Icon>
               </>
             )}
             {infoTextRight && (

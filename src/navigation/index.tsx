@@ -3,7 +3,6 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { ColorSchemeName, Image } from "react-native";
-import useColorScheme from "../hooks/useColorScheme";
 import DonateModal from "../screens/CausesPage/DonateModal";
 import CausesPage from "../screens/CausesPage";
 import GivingsPage from "../screens/GivingsPage";
@@ -13,11 +12,15 @@ import LinkingConfiguration from "./LinkingConfiguration";
 import CurrentUserProvider from "../contexts/currentUserContext";
 import { RootSiblingParent } from "react-native-root-siblings";
 import ImpactPage from "../screens/ImpactPage";
-import GivingIcon from "../assets/icons/giving-icon.png";
-import CausesIcon from "../assets/icons/causes-icon.png";
-import ImpactIcon from "../assets/icons/impact-icon.png";
-import UserIcon from "../assets/icons/user-icon.png";
 import CustomHeader from "./CustomHeader";
+import CausesIconOn from "./assets/CausesIconOn";
+import CausesIconOff from "./assets/CausesIconOff";
+import GivingIconOn from "./assets/GivingIconOn";
+import GivingIconOff from "./assets/GivingIconOff";
+import ImpactIconOn from "./assets/ImpactIconOn";
+import ImpactIconOff from "./assets/ImpactIconOff";
+import ProfileIconOn from "./assets/ProfileIconOn";
+import ProfileIconOff from "./assets/ProfileIconOff";
 import theme from "styles/theme";
 
 export default function Navigation({
@@ -56,13 +59,13 @@ function RootNavigator() {
 const BottomTab = createBottomTabNavigator<RootTabParamList>() as any;
 
 function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
+  const activeColor = theme.colors.ribonBlue;
 
   return (
     <BottomTab.Navigator
-      initialRouteName="ProfilePage"
+      initialRouteName="CausesPage"
       screenOptions={{
-        tabBarActiveTintColor: theme.colors.ribonBlue,
+        tabBarActiveTintColor: activeColor,
         headerTitle: () => <CustomHeader />,
       }}
       headerShown={false}
@@ -72,9 +75,8 @@ function BottomTabNavigator() {
         component={CausesPage}
         options={{
           title: "Causes",
-          tabBarIcon: ({ color }: any) => (
-            <Image source={CausesIcon} style={{ tintColor: color }} />
-          ),
+          tabBarIcon: ({ color }: any) =>
+            color === activeColor ? <CausesIconOn /> : <CausesIconOff />,
         }}
       />
       <BottomTab.Screen
@@ -82,9 +84,8 @@ function BottomTabNavigator() {
         component={GivingsPage}
         options={{
           title: "Giving",
-          tabBarIcon: ({ color }: any) => (
-            <Image source={GivingIcon} style={{ tintColor: color }} />
-          ),
+          tabBarIcon: ({ color }: any) =>
+            color === activeColor ? <GivingIconOn /> : <GivingIconOff />,
         }}
       />
       <BottomTab.Screen
@@ -92,9 +93,8 @@ function BottomTabNavigator() {
         component={ImpactPage}
         options={{
           title: "Impact",
-          tabBarIcon: ({ color }: any) => (
-            <Image source={ImpactIcon} style={{ tintColor: color }} />
-          ),
+          tabBarIcon: ({ color }: any) =>
+            color === activeColor ? <ImpactIconOn /> : <ImpactIconOff />,
         }}
       />
       <BottomTab.Screen
@@ -102,9 +102,8 @@ function BottomTabNavigator() {
         component={ProfilePage}
         options={{
           title: "Profile",
-          tabBarIcon: ({ color }: any) => (
-            <Image source={UserIcon} style={{ tintColor: color }} />
-          ),
+          tabBarIcon: ({ color }: any) =>
+            color === activeColor ? <ProfileIconOn /> : <ProfileIconOff />,
         }}
       />
     </BottomTab.Navigator>

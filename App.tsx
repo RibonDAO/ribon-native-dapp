@@ -21,7 +21,7 @@ export default function App() {
         <QueryClientProvider client={queryClient}>
           <ThemeProvider theme={theme}>
             <Navigation colorScheme={colorScheme} />
-            <StatusBar />
+            <StatusBar style="dark" />
           </ThemeProvider>
         </QueryClientProvider>
       </SafeAreaProvider>
