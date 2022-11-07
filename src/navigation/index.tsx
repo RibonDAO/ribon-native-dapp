@@ -3,7 +3,6 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { ColorSchemeName, Image } from "react-native";
-import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import DonateModal from "../screens/CausesPage/DonateModal";
 import CausesPage from "../screens/CausesPage";
@@ -19,6 +18,7 @@ import CausesIcon from "../assets/icons/causes-icon.png";
 import ImpactIcon from "../assets/icons/impact-icon.png";
 import UserIcon from "../assets/icons/user-icon.png";
 import CustomHeader from "./CustomHeader";
+import theme from "styles/theme";
 
 export default function Navigation({
   colorScheme,
@@ -60,9 +60,9 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="CausesPage"
+      initialRouteName="ProfilePage"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarActiveTintColor: theme.colors.ribonBlue,
         headerTitle: () => <CustomHeader />,
       }}
       headerShown={false}

@@ -1,9 +1,8 @@
-import React, { useCallback } from "react";
+import React from "react";
 import useNonProfits from "hooks/apiHooks/useNonProfits";
 import CardCenterImageButton from "components/moleculars/CardCenterImageButton";
 import * as S from "./styles";
 import { RootTabScreenProps } from "../../../types";
-import CardStories from "components/moleculars/CardStories";
 
 export default function CausesPage({ navigation }: RootTabScreenProps<any>) {
   const { nonProfits, isLoading } = useNonProfits();
