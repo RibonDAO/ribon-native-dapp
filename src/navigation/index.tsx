@@ -60,7 +60,7 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="CausesPage"
+      initialRouteName="ProfilePage"
       screenOptions={{
         tabBarActiveTintColor: theme.colors.ribonBlue,
         headerTitle: () => <CustomHeader />,
