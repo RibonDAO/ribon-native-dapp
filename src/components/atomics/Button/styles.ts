@@ -11,4 +11,6 @@ export const Container = styled.TouchableOpacity`
 
 export const Text = styled.Text`
   color: ${({ theme }) => theme.colors.ribonWhite};
+  font-size: 16px;
+  font-weight: 600;
 `;
