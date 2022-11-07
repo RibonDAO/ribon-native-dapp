@@ -14,7 +14,7 @@ export const Container = styled.ScrollView`
 
 export const CausesCardContainer = styled.View`
   ${({ theme }) => css`
-    height: 300px;
+    height: auto;
   `}
 `;
 
