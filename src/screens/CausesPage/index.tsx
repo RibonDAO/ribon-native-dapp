@@ -11,7 +11,11 @@ export default function CausesPage({ navigation }: RootTabScreenProps<any>) {
     <></>
   ) : (
     <S.Container>
-      <S.CausesContainer>
+      <S.Title>Causes</S.Title>
+      <S.CausesContainer
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+      >
         {nonProfits?.map((nonProfit, idx) => (
           <S.CausesCardContainer key={idx.toString()}>
             <CardCenterImageButton
