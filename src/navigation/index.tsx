@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName, Image } from "react-native";
+import { ColorSchemeName } from "react-native";
 import DonateModal from "../screens/CausesPage/DonateModal";
 import CausesPage from "../screens/CausesPage";
 import GivingsPage from "../screens/GivingsPage";

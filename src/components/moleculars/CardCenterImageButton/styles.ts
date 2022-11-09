@@ -6,12 +6,12 @@ import { View, Text, Image, StyleSheet } from "react-native";
 
 export const inline = StyleSheet.create({
   container: {
-    shadowColor: "rgba(40, 36, 28, 0.3)",
+    shadowColor: "rgba(40, 36, 28, 0.2)",
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    shadowRadius: 28,
+    shadowRadius: 10,
     shadowOpacity: 0.8,
     margin: 8,
   },
@@ -31,8 +31,8 @@ export const CardWrapper = styled(View)`
     background-color: ${theme.colors.ribonWhite};
     flex-direction: column;
     border-radius: 12px;
-    width: 100%;
     height: auto;
+    width: 100%;
   `}
 `;
 
@@ -45,7 +45,7 @@ export const ContainerImage = styled(View)`
 export const CardImage = styled(Image)`
   ${() => css`
     width: 100%;
-    height: 194px;
+    aspect-ratio: 1.1;
     border-radius: 12px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;

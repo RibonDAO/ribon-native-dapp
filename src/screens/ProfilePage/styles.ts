@@ -188,5 +188,5 @@ export const CardTitle = styled.Text`
   position: absolute;
   color: white;
   font-weight: bold;
-  font-size: 20;
+  font-size: 20px;
 `;
