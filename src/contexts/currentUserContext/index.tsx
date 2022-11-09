@@ -92,8 +92,8 @@ function CurrentUserProvider({ children }: Props) {
 
   useEffect(() => {
     setSignedIn(!!currentUser);
-    setUserInLocalStorage();
-    setUserLastDonationInLocalStorage();
+    if (currentUser) setUserInLocalStorage();
+    if (userLastDonation) setUserLastDonationInLocalStorage();
   }, [currentUser, userLastDonation]);
 
   const currentUserObject: ICurrentUserContext = useMemo(
