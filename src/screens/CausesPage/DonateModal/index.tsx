@@ -50,9 +50,6 @@ export default function DonateModal({
         <S.NonProfitText>
           You are donating to {"\n"}
           <S.NonProfitHighlight>{nonProfit.name}</S.NonProfitHighlight>
-          {"\n"}
-          {nonProfit.impactByTicket}
-          {nonProfit.impactDescription}
         </S.NonProfitText>
         <S.Logo source={{ uri: nonProfit.mainImage }} />
         <LinearGradient

@@ -1,22 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import useNonProfits from "hooks/apiHooks/useNonProfits";
 import CardCenterImageButton from "components/moleculars/CardCenterImageButton";
 import * as S from "./styles";
 import { RootTabScreenProps } from "../../../types";
+import useCauses from "hooks/apiHooks/useCauses";
+import GroupButtons from "components/moleculars/GroupButtons";
 
 export default function CausesPage({ navigation }: RootTabScreenProps<any>) {
   const { nonProfits, isLoading } = useNonProfits();
+  const { causes } = useCauses();
+  const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
+
+  const causesFilter = () => {
+    const causesApi = causes.filter((cause) => cause.active);
+    return causesApi || [];
+  };
+
+  const handleCauseChange = (_element: any, index: number) => {
+    setSelectedButtonIndex(index);
+  };
+
+  const nonProfitsFilter = () => {
+    const nonProfitsFiltered = nonProfits?.filter(
+      (nonProfit) =>
+        nonProfit?.cause?.id === causesFilter()[selectedButtonIndex]?.id,
+    );
+
+    return nonProfitsFiltered || [];
+  };
 
   return isLoading ? (
     <></>
   ) : (
     <S.Container>
-      <S.Title>Causes</S.Title>
+      <S.Title>Donate to a project</S.Title>
+      <S.GroupButtonsContainer>
+        <GroupButtons
+          elements={causesFilter()}
+          onChange={handleCauseChange}
+          nameExtractor={(cause) => cause.name}
+        />
+      </S.GroupButtonsContainer>
       <S.CausesContainer
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       >
-        {nonProfits?.map((nonProfit, idx) => (
+        {nonProfitsFilter()?.map((nonProfit, idx) => (
           <S.CausesCardContainer key={idx.toString()}>
             <CardCenterImageButton
               image={nonProfit.mainImage}

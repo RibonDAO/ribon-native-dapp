@@ -34,9 +34,17 @@ export const Title = styled.Text`
   ${({ theme }) => css`
     color: "${theme.colors.ribonBlack}";
     font-weight: 600;
-    font-size: 40px;
+    font-size: 35px;
     padding: 8px;
     width: 100%;
     margin-top: 10px;
+  `}
+`;
+
+export const GroupButtonsContainer = styled.View`
+  ${({ theme }) => css`
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 16px;
   `}
 `;
