@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName } from "react-native";
+import { Button, ColorSchemeName } from "react-native";
 import DonateModal from "../screens/CausesPage/DonateModal";
 import CausesPage from "../screens/CausesPage";
 import GivingsPage from "../screens/GivingsPage";
@@ -49,7 +49,19 @@ function RootNavigator() {
         component={BottomTabNavigator}
         options={{ headerShown: false }}
       />
-      <Stack.Group screenOptions={{ presentation: "modal", title: "Donate" }}>
+      <Stack.Group
+        screenOptions={({ navigation }: any) => ({
+          presentation: "modal",
+          title: "Donate",
+          headerLeft: () => (
+            <Button
+              onPress={() => navigation.goBack()}
+              title="Close"
+              color={theme.colors.ribonBlue}
+            />
+          ),
+        })}
+      >
         <Stack.Screen name="DonateModal" component={DonateModal} />
       </Stack.Group>
     </Stack.Navigator>
