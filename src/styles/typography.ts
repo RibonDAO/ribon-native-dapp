@@ -2,7 +2,7 @@ import { css } from "styled-components";
 
 const typography = css`
   body {
-    font-family: "Lato", sans-serif;
+    font-family: "Gambarino-Regular", sans-serif;
     font-size: 14px;
     display: flex;
     align-items: center;
