@@ -1,17 +1,16 @@
 import React, { useEffect } from "react";
 import { useCurrentUser } from "../../contexts/currentUserContext";
-import useImpact from "hooks/apiHooks/useImpact";
+import useImpact from "@ribon/shared/src/hooks/apiHooks/useImpact";
 import RankIcon from "./assets/fire-rank.png";
 import Avatar from "./assets/avatar.png";
 import BackgroundImage from "./assets/background.png";
 import Card from "./assets/card.png";
 import Card2 from "./assets/card2.png";
-import { Table, Rows } from "react-native-table-component";
 import * as S from "./styles";
 
 export default function ProfilePage() {
   const { currentUser } = useCurrentUser();
-  const { userImpact } = useImpact();
+  const { userImpact } = useImpact(currentUser?.id);
 
   useEffect(() => {
     console.log(currentUser, userImpact);

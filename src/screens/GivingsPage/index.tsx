@@ -12,6 +12,7 @@ function GivingsPage() {
 
   return (
     <View style={styles.mainContainer}>
+      <Text>Salve</Text>
       {nonProfits &&
         nonProfits.map((nonProfit) => <Text>{nonProfit.name}</Text>)}
     </View>

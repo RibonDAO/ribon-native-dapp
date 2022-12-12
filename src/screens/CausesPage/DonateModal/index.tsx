@@ -6,7 +6,7 @@ import {
   Keyboard,
 } from "react-native";
 import { RootStackScreenProps } from "../../../../types";
-import useDonations from "../../../hooks/apiHooks/useDonations";
+import useDonations from "@ribon/shared/src/hooks/apiHooks/useDonations";
 import { RIBON_INTEGRATION_ID } from "../../../constants/Application";
 import { useCurrentUser } from "../../../contexts/currentUserContext";
 import useUsers from "@ribon/shared/src/hooks/apiHooks/useUsers";
@@ -24,7 +24,7 @@ export default function DonateModal({
   const { findOrCreateUser } = useUsers();
   const { setCurrentUser, currentUser } = useCurrentUser();
   const [email, setEmail] = useState(currentUser?.email || "");
-  const { donate } = useDonations();
+  const { donate } = useDonations(currentUser?.id);
 
   async function handleDonateButtonPress() {
     setIsDonating(true);
