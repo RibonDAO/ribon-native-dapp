@@ -7,11 +7,15 @@ import useColorScheme from "./src/hooks/useColorScheme";
 import Navigation from "./src/navigation";
 import { ThemeProvider } from "styled-components/native";
 import theme from "./src/styles/theme";
+import { useFonts } from "expo-font";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
   const queryClient = new QueryClient();
+  const [fontsLoaded] = useFonts({
+    "Gambarino-Regular": require("./src/assets/fonts/Gambarino-Regular.ttf"),
+  });
 
   if (!isLoadingComplete) {
     return null;
