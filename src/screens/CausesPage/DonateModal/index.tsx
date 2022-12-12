@@ -9,7 +9,7 @@ import { RootStackScreenProps } from "../../../../types";
 import useDonations from "../../../hooks/apiHooks/useDonations";
 import { RIBON_INTEGRATION_ID } from "../../../constants/Application";
 import { useCurrentUser } from "../../../contexts/currentUserContext";
-import useUsers from "../../../hooks/apiHooks/useUsers";
+import useUsers from "@ribon/shared/src/hooks/apiHooks/useUsers";
 import Button from "components/atomics/Button";
 import { showToast } from "../../../lib/Toast";
 import * as S from "./styles";
