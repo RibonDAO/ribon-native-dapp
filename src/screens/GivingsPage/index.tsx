@@ -1,10 +1,18 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
-import theme from "styles/theme";
+import { StyleSheet, Text, View } from "react-native";
+import { theme } from "@ribon/shared/dist/styles";
 
 export default class GivingsPage extends Component {
+  componentDidMount() {
+    console.log("theme", theme.colors);
+  }
+
   render() {
-    return <View style={styles.mainContainer}></View>;
+    return (
+      <View style={styles.mainContainer}>
+        <Text>Oi</Text>
+      </View>
+    );
   }
 }
 
@@ -12,6 +20,9 @@ let CIRCLE_RADIUS = 30;
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+    backgroundColor: theme.colors.green40,
+    height: 300,
+    width: 300,
   },
   ballContainer: {
     height: 200,
