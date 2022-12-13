@@ -1,12 +1,10 @@
 import React from "react";
 import * as S from "./styles";
-import UserStory from "types/entities/UserStory";
 import InstaStory from "react-native-insta-story";
 import snakeCaseKeys from "snakecase-keys";
-import Footer from "components/moleculars/CardStories/Footer";
 
 export type Props = {
-  userStories: UserStory[];
+  userStories: any[];
 };
 function CardStories({ userStories }: Props): JSX.Element {
   function data() {

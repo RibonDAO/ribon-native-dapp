@@ -1,9 +1,8 @@
 import { AxiosResponse } from "axios";
-import Badge from "types/entities/Badge";
 import { apiGet } from "../index";
 
 const badgesApi = {
-  getBadges: (id: number | null): Promise<AxiosResponse<Badge[]>> =>
+  getBadges: (id: number | null): Promise<AxiosResponse<any[]>> =>
     apiGet(`users/${id}/badges`),
 };
 

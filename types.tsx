@@ -4,7 +4,7 @@ import {
   NavigatorScreenParams,
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import NonProfit from "src/types/entities/NonProfit";
+import { NonProfit } from "@ribon/shared/dist/types";
 
 declare global {
   namespace ReactNavigation {

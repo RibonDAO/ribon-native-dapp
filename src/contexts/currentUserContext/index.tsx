@@ -8,7 +8,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import User from "types/entities/User";
+import { User } from "@ribon/shared/dist/types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export interface ICurrentUserContext {

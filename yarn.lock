@@ -2198,7 +2198,7 @@
 
 "@ribon/shared@https://github.com/NickNish09/ribon-shared.git":
   version "0.0.0"
-  resolved "https://github.com/NickNish09/ribon-shared.git#7c903018fab7505649af38de03aa4b431e50f4a6"
+  resolved "https://github.com/NickNish09/ribon-shared.git#d8d8802f247092543fdb942bcd5850c173b6be02"
   dependencies:
     "@apollo/client" "^3.6.9"
     "@types/base-64" "^1.0.0"
