@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import useNonProfits from "@ribon/shared/src/hooks/apiHooks/useNonProfits";
 import CardCenterImageButton from "components/moleculars/CardCenterImageButton";
 import * as S from "./styles";
 import { RootTabScreenProps } from "../../../types";
-import useCauses from "@ribon/shared/src/hooks/apiHooks/useCauses";
+import { useCauses, useNonProfits } from "@ribon/shared";
 import GroupButtons from "components/moleculars/GroupButtons";
 
 export default function CausesPage({ navigation }: RootTabScreenProps<any>) {

@@ -6,10 +6,9 @@ import {
   Keyboard,
 } from "react-native";
 import { RootStackScreenProps } from "../../../../types";
-import useDonations from "@ribon/shared/src/hooks/apiHooks/useDonations";
+import { useDonations, useUsers } from "@ribon/shared";
 import { RIBON_INTEGRATION_ID } from "../../../constants/Application";
 import { useCurrentUser } from "../../../contexts/currentUserContext";
-import useUsers from "@ribon/shared/src/hooks/apiHooks/useUsers";
 import Button from "components/atomics/Button";
 import { showToast } from "../../../lib/Toast";
 import * as S from "./styles";

@@ -1,2 +1,2 @@
-import { useApi } from "@ribon/shared/src/hooks/useApi";
+import { useApi } from "@ribon/shared";
 export { useApi };

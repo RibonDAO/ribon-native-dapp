@@ -1,11 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CURRENT_USER_KEY } from "../../contexts/currentUserContext";
-import api, {
-  apiGet,
-  apiDelete,
-  apiPut,
-  apiPost,
-} from "@ribon/shared/src/services/api";
+import { apiGet, apiDelete, apiPut, apiPost, api } from "@ribon/shared";
 
 const RIBON_API = "https://dapp-dev-api.ribon.io/";
 
@@ -14,7 +9,7 @@ export const baseURL = process.env.REACT_APP_RIBON_API || RIBON_API;
 api.defaults.baseURL = baseURL;
 
 api.interceptors.request.use(async (config) => {
-  const lang = "en";
+  const lang = "pt-BR";
   const user = await AsyncStorage.getItem(CURRENT_USER_KEY);
   const email = JSON.parse(user || "{}")?.email;
   const authHeaders = { Language: lang, Email: email };
