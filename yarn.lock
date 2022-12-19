@@ -9364,6 +9364,11 @@ react-native-eva-icons@^1.3.1:
   resolved "https://registry.yarnpkg.com/react-native-eva-icons/-/react-native-eva-icons-1.3.1.tgz#1e6e019b0fd3cb1669db50bd6bbdaa6d89327593"
   integrity sha512-emd/aYXuOacuDVTx0SJoLi+xsOdCNdljQB3PTNCM9AQ3m/smG0X1TN0+ihelPO7MqoHzaH0h6lbANtwxGUy8Fw==
 
+react-native-fb-collage@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-native-fb-collage/-/react-native-fb-collage-1.0.7.tgz#7de412ba2b60e5f4d5e5472b425bccfaee0db94d"
+  integrity sha512-mX6drrEvSQ5cOT8ekPUd05ASY3lzzldbqKHYNmQWTgZ8eLb7ZGNBlEpcM+GZAyuT1rY8KX60ucFVG9tnPC+zfA==
+
 react-native-flip-card@^3.5.6:
   version "3.5.6"
   resolved "https://registry.yarnpkg.com/react-native-flip-card/-/react-native-flip-card-3.5.6.tgz#de26f0285aa6f8ee10bb4b696c60c6fb43bb580f"

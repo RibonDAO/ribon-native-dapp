@@ -1,185 +1,212 @@
-import React, { useEffect } from "react";
-import { useCurrentUser } from "../../contexts/currentUserContext";
-import useImpact from "hooks/apiHooks/useImpact";
-import RankIcon from "./assets/fire-rank.png";
-import Avatar from "./assets/avatar.png";
-import BackgroundImage from "./assets/background.png";
-import Card from "./assets/card.png";
-import Card2 from "./assets/card2.png";
+import React, { memo } from "react";
+import { View, Image } from "react-native";
 import {
-  Layout, useStyleSheet, StyleService, useTheme
+  TopNavigation,
+  StyleService,
+  useStyleSheet,
+  Avatar,
+  Button,
+  Icon,
+  ViewPager,
 } from "@ui-kitten/components";
-import * as S from "./styles";
-import { View, Text } from "react-native";
+import useLayout from "hooks/useLayout";
 
-export default function ProfilePage() {
-  const { currentUser } = useCurrentUser();
-  const { userImpact } = useImpact();
+import Container from "components/moleculars/Container";
+import NavigationAction from "components/moleculars/NavigationAction";
+import Animated, {
+  Extrapolate,
+  interpolate,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+} from "react-native-reanimated";
+import { Images } from "assets/images";
+import HeaderTeacher from "./HeaderProfile";
+import FrequencyTab from "./FrequencyTab";
+import TabCourse from "./TabCourse";
+import BottomTab from "./BottomTab";
+
+const CryptoProfile = memo(() => {
+  const { height, top, bottom } = useLayout();
   const styles = useStyleSheet(themedStyles);
-  const theme = useTheme();
 
-  useEffect(() => {
-    console.log(currentUser, userImpact);
-  }, [currentUser, userImpact]);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const translationY = useSharedValue(0);
+  const scrollHandler = useAnimatedScrollHandler((event) => {
+    translationY.value = event.contentOffset.y;
+  });
 
-  return (
-    <S.Container>
-      <S.ScrollContainer>
-        <S.BackgroundSection>
-          <S.Background source={BackgroundImage} resizeMode="cover" />
-          <S.RankImage source={RankIcon} />
-          <S.AvatarImage source={Avatar} />
-        </S.BackgroundSection>
-
-        <S.ProgressBarContainer>
-          <S.Nickname>Yan</S.Nickname>
-          <S.ProgressBar></S.ProgressBar>
-          <S.ProgressValue>0 / 20 doações</S.ProgressValue>
-        </S.ProgressBarContainer>
-
-        <Layout level="2" style={[styles.flexRow, styles.layoutItem]}>
-          <View style={styles.item}>
-            <Text children="348" center category="title3" status="white" />
-            <Text children="Following" center category="caption1" status="snow" />
-          </View>
-          <Layout
-            style={{ backgroundColor: theme["color-basic-1300"], width: 1 }}
-          />
-          <View style={styles.item}>
-            <Text children="195" center category="title3" status="white" />
-            <Text children="Followers" center category="caption1" status="snow" />
-          </View>
-          <Layout
-            style={{ backgroundColor: theme["color-basic-1300"], width: 1 }}
-          />
-          <View style={styles.item}>
-            <Text children="875" center category="title3" status="white" />
-            <Text children="Loves" center category="caption1" status="snow" />
-          </View>
-        </Layout>
-
-        <S.StreakSection>
-          <S.StreakBox>
-            <S.StreakValue>20</S.StreakValue>
-            <S.StreakName>Perseverança</S.StreakName>
-          </S.StreakBox>
-          <S.StreakBox>
-            <S.StreakValue>78</S.StreakValue>
-            <S.StreakName>Total Doações</S.StreakName>
-          </S.StreakBox>
-          <S.StreakBox>
-            <S.StreakValue>Ouro</S.StreakValue>
-            <S.StreakName>Seu Rank</S.StreakName>
-          </S.StreakBox>
-        </S.StreakSection>
-
-        <S.ActivitySection>
-          <S.ActivityTitle>Atividade de doações</S.ActivityTitle>
-          <S.ActivityTable
-            borderStyle={{
-              borderWidth: 2,
-              borderColor: "#FFFFFF",
-            }}
-          >
-            <S.ActivityRows
-              data={[
-                ["", "", "", "", "", "", ""],
-                ["", "", "", "", "", "", ""],
-                ["", "", "", "", "", "", ""],
-                ["", "", "", "", "", "", ""],
-              ]}
-            />
-          </S.ActivityTable>
-        </S.ActivitySection>
-
-        <S.ExploreSection>
-          <S.ExploreTitle>Explore</S.ExploreTitle>
-          <S.CardsCarousel>
-            <S.ExploreCard>
-              <S.ExploreBackground source={Card} />
-              <S.CardTitle>Conquistas</S.CardTitle>
-            </S.ExploreCard>
-            <S.ExploreCard>
-              <S.ExploreBackground source={Card2} />
-              <S.CardTitle>Impacto</S.CardTitle>
-            </S.ExploreCard>
-          </S.CardsCarousel>
-        </S.ExploreSection>
-      </S.ScrollContainer>
-    </S.Container>
+  const [header, setHeader] = React.useState(0);
+  const onLayoutHeader = React.useCallback(
+    (e) => setHeader(e.nativeEvent.layout.height),
+    []
   );
-}
+  const input = [0, height * 0.06, height * 0.075, height * 0.09];
+
+  const opacityHeader = useAnimatedStyle(() => {
+    const opacity = interpolate(
+      translationY.value,
+      input,
+      [0, 0, 0.1, 1],
+      Extrapolate.CLAMP
+    );
+    const transY = interpolate(
+      translationY.value,
+      input,
+      [30, 20, 15, 0],
+      Extrapolate.CLAMP
+    );
+    const scale = interpolate(translationY.value, input, [0, 0, 1, 1]);
+    return {
+      opacity: opacity,
+      transform: [{ translateY: transY }, { scale: scale }],
+      marginBottom: 8,
+    };
+  }, []);
+  const scaleAvatar = useAnimatedStyle(() => {
+    const scale = interpolate(translationY.value, input, [1, 0.9, 0.1, 0]);
+    const opacity = interpolate(translationY.value, input, [1, 1, 0, 0]);
+    return {
+      transform: [{ scale: scale }],
+      opacity: opacity,
+      alignSelf: "center",
+      zIndex: 9,
+      top: header + top,
+    };
+  }, [header, top]);
+  return (
+    <Container style={styles.container} useSafeArea={false}>
+      <TopNavigation
+        style={{
+          position: "absolute",
+          top: top,
+          zIndex: 10,
+        }}
+        onLayout={onLayoutHeader}
+        appearance={"control"}
+        accessoryLeft={
+          <View style={styles.flexRow}>
+            <NavigationAction marginLeft={4} icon="leftArrow" />
+            <Animated.View style={opacityHeader}>
+              <Avatar size="40" source={DATA_USER.avatar} />
+            </Animated.View>
+            <NavigationAction icon="menu" />
+          </View>
+        }
+      />
+      <Image
+        source={Images.bgTeacher}
+        /* @ts-ignore */
+        style={styles.bgHeader}
+      />
+      <Animated.View style={scaleAvatar}>
+        <Avatar
+          source={DATA_USER.avatar}
+          size={"92"}
+          /* @ts-ignore */
+          style={[styles.avatar]}
+        />
+      </Animated.View>
+      <Animated.ScrollView
+        showsVerticalScrollIndicator={false}
+        onScroll={scrollHandler}
+        scrollEventThrottle={16}
+        contentContainerStyle={{
+          marginTop: top + header + 8,
+          paddingBottom: bottom + 40,
+        }}
+      >
+        <HeaderTeacher data={DATA_USER} />
+        <View style={styles.action}>
+          <Button
+            accessoryLeft={<Icon pack="assets" name="star" />}
+            status={"control"}
+            size={"50"}
+            children="Message"
+            style={styles.mess}
+          />
+          <Button
+            accessoryLeft={<Icon pack="assets" name="addUser" />}
+            size="50"
+            children="Following"
+            style={styles.following}
+          />
+        </View>
+        <FrequencyTab
+          selectedIndex={selectedIndex}
+          onChange={setSelectedIndex}
+          tabs={["Wishlist", "Recent View"]}
+          style={styles.tabBar}
+        />
+        <ViewPager
+          selectedIndex={selectedIndex}
+          onSelect={setSelectedIndex}
+          style={styles.viewPager}
+        >
+          <TabCourse data={DATA_COLLECTION} />
+          <View></View>
+        </ViewPager>
+      </Animated.ScrollView>
+      <BottomTab />
+    </Container>
+  );
+});
+
+export default CryptoProfile;
 
 const themedStyles = StyleService.create({
   container: {
     flex: 1,
   },
-  card01: {
-    borderRadius: 12,
-    marginHorizontal: 24,
-    paddingVertical: 12,
-    paddingLeft: 11,
-    flexDirection: "row",
+  viewPager: {
+    marginBottom: 90,
   },
-  girl: {
-    alignSelf: "center",
-    marginTop: 30,
+  tabBar: {
+    marginBottom: 24,
   },
-  card02: {
-    borderRadius: 12,
-    marginHorizontal: 24,
-    paddingVertical: 12,
-    paddingLeft: 11,
+  action: {
     flexDirection: "row",
     marginTop: 16,
-    marginBottom: 120,
-  },
-  progressBar: {
-    height: 8,
-  },
-  textCard: {
-    marginLeft: 16,
-    justifyContent: "space-between",
+    marginHorizontal: 24,
+    marginBottom: 24,
   },
   flexRow: {
     flexDirection: "row",
     justifyContent: "space-between",
+    flex: 1,
     alignItems: "center",
   },
-  item: {
-    marginVertical: 22,
+  mess: {
+    flex: 1,
+    marginRight: 16,
   },
-  layoutItem: {
-    borderRadius: 12,
-    paddingHorizontal: 32,
-    marginTop: 16,
-    marginHorizontal: 24,
+  following: {
+    flex: 1,
   },
-  achieve: {
-    marginTop: 44,
-    paddingHorizontal: 24,
-    marginBottom: 24,
-    flexDirection: "row",
-    justifyContent: "space-between",
+  bgHeader: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    zIndex: 9,
+    width: "100%",
   },
-  button: {
-    width: 64,
-    height: 64,
-  },
-  imgCard: {
-    width: 80,
-    height: 80,
-    borderRadius: 8,
-  },
-  hiThere: {
-    width: 130,
-    height: 48,
-    alignItems: "center",
-    justifyContent: "center",
-    alignSelf: "flex-end",
-    marginTop: 18,
-    marginBottom: -44,
-    marginRight: 20,
-    paddingHorizontal: 12,
+  avatar: {
+    borderWidth: 4,
+    borderColor: "background-basic-color-1",
+    marginBottom: 8,
   },
 });
+const DATA_USER = {
+  name: "Francis Dixon",
+  avatar: Images.avatar11,
+  following: 348,
+  follower: 24,
+  loves: 233,
+};
+const DATA_COLLECTION = [
+  { id: 0, title: "CAKE", image: Images.collection },
+  { id: 1, title: "Binance", image: Images.collection1 },
+  { id: 2, title: "BITCOIN", image: Images.collection2 },
+  { id: 3, title: "ETHEREUM", image: Images.collection3 },
+];

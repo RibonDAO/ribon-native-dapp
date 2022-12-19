@@ -8,7 +8,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 
-import { Animation_Types_Enum } from "constants/Type";
+import { Animation_Types_Enum } from "../../../constants/Type";
 
 interface Props {
   children: ReactElement;
