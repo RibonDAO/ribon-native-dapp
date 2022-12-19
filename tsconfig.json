@@ -11,11 +11,14 @@
     "noEmit": true,
     "moduleResolution": "node",
     "paths": {
-      "src/*": ["./*"],
+      "src/*": [
+        "./*"
+      ],
     }
   },
   "include": [
-    "src"
+    "src",
+    "ThemeContext.tsx"
   ],
   "exclude": [
     "node_modules",

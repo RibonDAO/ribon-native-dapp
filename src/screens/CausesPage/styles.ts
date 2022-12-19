@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components/native";
 import { Dimensions } from "react-native";
-import { stylizedHeadingMedium } from "@ribon/shared/styles/typography/stylized";
 
 export const Container = styled.ScrollView`
   ${({ theme }) => css`
@@ -33,7 +32,6 @@ export const CausesContainer = styled.ScrollView`
 
 export const Title = styled.Text`
   ${({ theme }) => css`
-    ${stylizedHeadingMedium}
     color: "${theme.colors.ribonBlack}";
     padding: 8px;
     width: 100%;

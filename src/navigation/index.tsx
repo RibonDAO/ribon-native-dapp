@@ -7,6 +7,7 @@ import DonateModal from "../screens/CausesPage/DonateModal";
 import CausesPage from "../screens/CausesPage";
 import GivingsPage from "../screens/GivingsPage";
 import ProfilePage from "../screens/ProfilePage";
+import Profile2Page from "../screens/Profile2Page";
 import { RootStackParamList, RootTabParamList } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import CurrentUserProvider from "../contexts/currentUserContext";
@@ -114,6 +115,15 @@ function BottomTabNavigator() {
         component={ProfilePage}
         options={{
           title: "Profile",
+          tabBarIcon: ({ color }: any) =>
+            color === activeColor ? <ProfileIconOn /> : <ProfileIconOff />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Profile2Page"
+        component={Profile2Page}
+        options={{
+          title: "Profile2",
           tabBarIcon: ({ color }: any) =>
             color === activeColor ? <ProfileIconOn /> : <ProfileIconOff />,
         }}
