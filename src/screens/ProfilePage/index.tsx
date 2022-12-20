@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useCurrentUser } from "../../contexts/currentUserContext";
-import { useImpact } from "@ribon/shared";
+import { useImpact } from "@ribon.io/shared";
 import RankIcon from "./assets/fire-rank.png";
 import Avatar from "./assets/avatar.png";
 import BackgroundImage from "./assets/background.png";

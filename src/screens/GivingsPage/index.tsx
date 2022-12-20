@@ -1,21 +1,24 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { theme } from "@ribon/shared/dist/styles";
+import { theme } from "@ribon.io/shared/dist/styles";
+import { useNonProfits } from "@ribon.io/shared/dist/hooks";
 
-export default class GivingsPage extends Component {
-  componentDidMount() {
-    console.log("theme", theme.colors);
-  }
+function GivingsPage() {
+  const { something } = useNonProfits();
 
-  render() {
-    return (
-      <View style={styles.mainContainer}>
-        <Text>Oi</Text>
-      </View>
-    );
-  }
+  useEffect(() => {
+    console.log(theme);
+    console.log(something);
+  }, [theme]);
+
+  return (
+    <View style={styles.mainContainer}>
+      <Text>Oi</Text>
+    </View>
+  );
 }
 
+export default GivingsPage;
 let CIRCLE_RADIUS = 30;
 const styles = StyleSheet.create({
   mainContainer: {

@@ -1,2 +1,2 @@
-import { useApi } from "@ribon/shared";
+import { useApi } from "@ribon.io/shared";
 export { useApi };
