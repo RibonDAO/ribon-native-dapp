@@ -63,23 +63,22 @@ export const InputEmailContainer = styled(View)`
   `}
 `;
 
-export const Input = styled.TextInput`
-  ${({ theme }) => css`
-    height: 40px;
-    width: 100%;
-    border-width: 1px;
-    border-radius: 8px;
-    border-color: ${theme.colors.ribonBlue};
-    padding-left: 8px;
-  `}
+export const Input = styled.TextInput<{ error: boolean }>`
+  height: 40px;
+  width: 100%;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: ${({ theme, error }) =>
+    error ? theme.colors.lgRed : theme.colors.ribonBlue};
+
+  padding-left: 8px;
 `;
 
-export const InputHint = styled(Text)`
-  ${({ theme }) => css`
-    font-size: 12px;
-    color: ${theme.colors.darkGray};
-    margin-top: 4px;
-  `}
+export const InputHint = styled(Text)<{ error: boolean }>`
+  font-size: 12px;
+  color: ${({ theme, error }) =>
+    error ? theme.colors.lgRed : theme.colors.darkGray};
+  margin-top: 4px;
 `;
 
 export const NonProfitContainer = styled(View)`

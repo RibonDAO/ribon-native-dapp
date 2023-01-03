@@ -15,10 +15,15 @@ declare global {
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   DonateModal: ModalParamList;
+  DonationDonePage: DonationDoneParamsList;
   NotFound: undefined;
 };
 
 export type ModalParamList = {
+  nonProfit: NonProfit;
+};
+
+export type DonationDoneParamsList = {
   nonProfit: NonProfit;
 };
 

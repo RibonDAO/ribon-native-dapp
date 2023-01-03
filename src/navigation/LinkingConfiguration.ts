@@ -12,6 +12,7 @@ const linking: LinkingOptions<RootStackParamList> = {
           CausesPage: {
             screens: {
               CausesPage: "causes",
+              DonationDonePage: "DonationDonePage",
             },
           },
           GivingsPage: {

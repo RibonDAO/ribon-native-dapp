@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { Button, ColorSchemeName } from "react-native";
 import DonateModal from "../screens/CausesPage/DonateModal";
+import DonationDonePage from "../screens/CausesPage/DonationDonePage";
 import CausesPage from "../screens/CausesPage";
 import GivingsPage from "../screens/GivingsPage";
 import ProfilePage from "../screens/ProfilePage";
@@ -22,6 +23,7 @@ import ImpactIconOff from "./assets/ImpactIconOff";
 import ProfileIconOn from "./assets/ProfileIconOn";
 import ProfileIconOff from "./assets/ProfileIconOff";
 import theme from "styles/theme";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Navigation({
   colorScheme,
@@ -64,6 +66,12 @@ function RootNavigator() {
       >
         <Stack.Screen name="DonateModal" component={DonateModal} />
       </Stack.Group>
+
+      <Stack.Screen
+        name="DonationDonePage"
+        component={DonationDonePage}
+        options={{ headerShown: false, animation: "slide" }}
+      />
     </Stack.Navigator>
   );
 }
@@ -73,12 +81,19 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>() as any;
 function BottomTabNavigator() {
   const activeColor = theme.colors.ribonBlue;
 
+  const insets = useSafeAreaInsets();
+
   return (
     <BottomTab.Navigator
       initialRouteName="CausesPage"
       screenOptions={{
         tabBarActiveTintColor: activeColor,
         headerTitle: () => <CustomHeader />,
+        tabBarStyle: {
+          paddingTop: 10,
+          paddingBottom: 10 + insets.bottom,
+          height: 60 + insets.bottom,
+        },
       }}
       headerShown={false}
     >

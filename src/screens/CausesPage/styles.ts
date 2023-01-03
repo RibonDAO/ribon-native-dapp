@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components/native";
-import { Dimensions } from "react-native";
 import { stylizedHeadingMedium } from "@ribon/shared/styles/typography/stylized";
 
 export const Container = styled.ScrollView`
@@ -13,12 +12,7 @@ export const Container = styled.ScrollView`
 export const CausesCardContainer = styled.View`
   ${({ theme }) => css`
     height: auto;
-    width: ${() => {
-      const { width } = Dimensions.get("window");
-      const spacing = width / 5;
-
-      return `${width - spacing}px`;
-    }};
+    width: 300px;
   `}
 `;
 

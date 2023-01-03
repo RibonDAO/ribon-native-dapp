@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -12,6 +12,7 @@ import { useCurrentUser } from "../../../contexts/currentUserContext";
 import useUsers from "../../../hooks/apiHooks/useUsers";
 import Button from "components/atomics/Button";
 import { showToast } from "../../../lib/Toast";
+import { isValidEmail } from "../../../lib/validators/email";
 import * as S from "./styles";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -20,29 +21,51 @@ export default function DonateModal({
   navigation,
 }: RootStackScreenProps<"DonateModal">) {
   const [isDonating, setIsDonating] = useState(false);
+  const [invalidInput, setInvalidInput] = useState(false);
   const { nonProfit } = route.params;
   const { findOrCreateUser } = useUsers();
   const { setCurrentUser, currentUser } = useCurrentUser();
   const [email, setEmail] = useState(currentUser?.email || "");
   const { donate } = useDonations();
 
-  async function handleDonateButtonPress() {
-    setIsDonating(true);
-    try {
-      const user = await findOrCreateUser(email);
-      setCurrentUser(user);
-      await donate(RIBON_INTEGRATION_ID, nonProfit.id, email);
-      setEmail("");
-      showToast("Thanks for your donation!");
-    } catch (error: any) {
-      showToast(error.response.data.formatted_message);
-      console.log(error);
-      console.log(error.response);
-    } finally {
+  useEffect(() => {
+    if (isValidEmail(email)) {
+      setInvalidInput(false);
+    } else {
+      setInvalidInput(true);
+    }
+  }, [email]);
+
+  function handleButtonPress() {
+    if (!isValidEmail(email)) {
       setIsDonating(false);
-      navigation.pop();
+    } else {
+      setIsDonating(true);
     }
   }
+
+  async function donateCallback() {
+    if (email) {
+      try {
+        const user = await findOrCreateUser(email);
+        setCurrentUser(user);
+        await donate(RIBON_INTEGRATION_ID, nonProfit.id, email);
+        navigation.pop();
+        setTimeout(() => {
+          navigation.navigate("DonationDonePage", { nonProfit });
+        }, 500);
+      } catch (error: any) {
+        navigation.pop();
+        showToast(error.response.data.formatted_message);
+      } finally {
+        setIsDonating(false);
+      }
+    }
+  }
+
+  const handleTextChange = (text: string) => {
+    setEmail(text);
+  };
 
   return (
     <S.ModalWrapper>
@@ -78,19 +101,26 @@ export default function DonateModal({
               <S.Input
                 placeholder="Place your email"
                 keyboardType="email-address"
-                onChangeText={setEmail}
+                onChangeText={handleTextChange}
                 value={email}
                 autoCapitalize="none"
                 textContentType="emailAddress"
+                error={invalidInput}
                 autoFocus
               />
-              <S.InputHint>All your data is safe on Ribon.</S.InputHint>
+              <S.InputHint error={invalidInput}>
+                {invalidInput
+                  ? "Please enter a valid email address"
+                  : "All your data is safe with us"}
+              </S.InputHint>
             </S.InputEmailContainer>
 
             <S.ButtonContainer>
               <Button
-                text="Donate"
-                onPress={handleDonateButtonPress}
+                text={isDonating ? "Donating..." : "Donate"}
+                onPress={handleButtonPress}
+                timeout={isValidEmail(email) ? 2000 : null}
+                timeoutCallback={donateCallback}
                 disabled={isDonating}
               />
             </S.ButtonContainer>
