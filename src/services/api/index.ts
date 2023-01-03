@@ -4,7 +4,7 @@ import snakeCaseKeys from "snakecase-keys";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CURRENT_USER_KEY } from "../../contexts/currentUserContext";
 
-const RIBON_API = "https://dapp-api.ribon.io/";
+const RIBON_API = "https://dapp-dev-api.ribon.io/";
 
 export const baseURL = process.env.REACT_APP_RIBON_API || RIBON_API;
 export const API_SCOPE = "/api/v1";
