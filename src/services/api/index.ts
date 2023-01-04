@@ -6,7 +6,7 @@ import {
   apiPut,
   apiPost,
   api,
-} from "@ribon.io/shared/dist/services";
+} from "@ribon.io/shared/services";
 
 const RIBON_API = "https://dapp-dev-api.ribon.io/";
 

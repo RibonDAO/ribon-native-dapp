@@ -6,7 +6,7 @@ import {
   Keyboard,
 } from "react-native";
 import { RootStackScreenProps } from "../../../../types";
-import { useDonations, useUsers } from "@ribon.io/shared/dist/hooks";
+import { useDonations, useUsers } from "@ribon.io/shared/hooks";
 import { RIBON_INTEGRATION_ID } from "../../../constants/Application";
 import { useCurrentUser } from "../../../contexts/currentUserContext";
 import Button from "components/atomics/Button";

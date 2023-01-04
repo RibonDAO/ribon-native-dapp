@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { theme } from "@ribon.io/shared/dist/styles";
-import { useNonProfits } from "@ribon.io/shared/dist/hooks";
+import { theme } from "@ribon.io/shared/styles";
+import { useNonProfits } from "@ribon.io/shared/hooks";
 
 function GivingsPage() {
-  const { something } = useNonProfits();
+  const { nonProfits } = useNonProfits();
 
   useEffect(() => {
     console.log(theme);
-    console.log(something);
+    console.log(nonProfits);
   }, [theme]);
 
   return (

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CardCenterImageButton from "components/moleculars/CardCenterImageButton";
 import * as S from "./styles";
 import { RootTabScreenProps } from "../../../types";
-import { useCauses, useNonProfits } from "@ribon.io/shared";
+import { useCauses, useNonProfits } from "@ribon.io/shared/hooks";
 import GroupButtons from "components/moleculars/GroupButtons";
 
 export default function CausesPage({ navigation }: RootTabScreenProps<any>) {

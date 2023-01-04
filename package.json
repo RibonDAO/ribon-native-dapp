@@ -21,7 +21,7 @@
     "@react-navigation/bottom-tabs": "^6.0.5",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.1.0",
-    "@ribon.io/shared": "^1.0.6",
+    "@ribon.io/shared": "^1.0.12",
     "@storybook/react-native": "^6.0.1-beta.6",
     "@types/react-native-flip-card": "^3.5.2",
     "@types/react-native-table-component": "^1.2.4",
