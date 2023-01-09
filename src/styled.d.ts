@@ -1,4 +1,4 @@
-import theme from "./styles/theme";
+import theme from "./global/styles/theme";
 import "styled-components/native";
 
 type Theme = typeof theme;

@@ -14,8 +14,8 @@ interface ThemeType {
 const theme: ThemeType = {
   grid: {},
   border: {},
-  font: {
-    family: "Lato",
+  fonts: {
+    family: "Gambarino-Regular",
     light: 300,
     normal: 400,
     bold: 600,

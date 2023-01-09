@@ -120,6 +120,7 @@ export const ActivityRows = styled(Rows)`
 `;
 
 export const ActivityTitle = styled.Text`
+  font-family: "Gambarino-Regular";
   color: white;
   font-size: 20px;
   margin-bottom: 16px;

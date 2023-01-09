@@ -1,7 +1,7 @@
-import React, { Component, useEffect } from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View, Text, Image, FlatList } from "react-native";
 import { useCurrentUser } from "../../contexts/currentUserContext";
-import theme from "styles/theme";
+import theme from "../../global/styles/theme";
 import useBadges from "hooks/apiHooks/useBadges";
 
 function ImpactPage() {

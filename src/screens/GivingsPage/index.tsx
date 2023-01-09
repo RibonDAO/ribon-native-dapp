@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
-import theme from "styles/theme";
+import theme from "../../global/styles/theme";
 
 export default class GivingsPage extends Component {
   render() {

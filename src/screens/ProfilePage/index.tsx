@@ -6,7 +6,6 @@ import Avatar from "./assets/avatar.png";
 import BackgroundImage from "./assets/background.png";
 import Card from "./assets/card.png";
 import Card2 from "./assets/card2.png";
-import { Table, Rows } from "react-native-table-component";
 import * as S from "./styles";
 
 export default function ProfilePage() {
